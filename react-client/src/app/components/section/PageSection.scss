@@ -1,0 +1,38 @@
+@import '../../_sass/abstracts/index';
+
+$border: 2px solid #000;
+
+.page-section {
+    &__header {
+        margin-bottom: $grid-gutter-width;
+
+        & .title > h1 {
+            border: $border;
+            padding-top: ($grid-gutter-width / 2);
+            padding-bottom: ($grid-gutter-width / 2);
+
+            text-transform: uppercase;
+
+            & span {
+                position: relative;
+                display: inline-block;
+                z-index: 1;
+
+                &::before {
+                    position: absolute;
+                    z-index: -1;
+                    content: '';
+
+                    width: 100%;
+                    height: 1em;
+
+                    background: $color-purple;
+                    transform: translate(-0.42em, 0.42em);
+                }
+            }
+        }
+    }
+    &__footer {
+        margin-top: $grid-gutter-width;
+    }
+}

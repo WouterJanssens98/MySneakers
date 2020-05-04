@@ -1,0 +1,124 @@
+@import '../../_sass/abstracts/index';
+
+$footer-padding: 24px;
+$footer-transition: all 286ms ease-in-out 0s;
+
+.links__contact {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    & > span:first-of-type {
+        text-align: center;
+    }
+}
+
+.links__gdm {
+    margin: $footer-padding 0 0;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    & a {
+        text-decoration: none;
+        //color: $footer-color-grey-light;
+    
+        transition: $footer-transition;
+
+        display: flex;;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+
+        &::after {
+            content: '';
+            display: inline-block;
+            height: 20px;
+            width: 1px;
+            background: $color-purple;
+            margin: 0 ($footer-padding/2);
+        }
+    
+        &:hover {
+            //color: $footer-color-purple-light;
+        }
+    }
+}
+
+.meta__ahs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.meta__terms {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.meta__social {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.footer {    
+    &__socialmedia-link {
+        //border-left: $footer-meta-border;
+    
+        box-sizing: border-box;
+        padding: $footer-padding;
+    
+        text-decoration: none;
+        //color: $footer-color-grey-light;
+    
+        transition: $footer-transition;
+    
+        &:hover {
+            //color: $footer-color-grey-light;
+            background: $color-purple;
+            text-decoration: none;
+        }
+    
+        & > i {
+            width: 32px;
+            height: 32px;
+            display: block;
+            text-align: center;
+
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+        }
+    }
+
+    &__term-link {
+        text-decoration: none;
+        //color: $footer-color-grey-light;
+    
+        transition: $footer-transition;
+
+        //box-shadow: inset 0 -2px $color-purple-light;
+        margin: 0 ($footer-padding / 2);
+    
+        &:hover {
+          //box-shadow: inset 0 -2px $footer-color-grey-light;
+          //color: $footer-color-purple-light;
+        }
+    }
+}
