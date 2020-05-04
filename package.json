@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "http://github.com/gdmgent-1920-mobdev2/MERN-stack",
-  "author": "drdynscript <drdynscript@gmail.com>",
+  "author": "Wouter Janssens",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^5.1.0",
