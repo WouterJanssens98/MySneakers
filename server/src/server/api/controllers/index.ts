@@ -4,6 +4,9 @@ import MessageController from './MessageController';
 import PostController from './PostController';
 import UserController from './UserController';
 import ShoeController from './ShoeController';
+import PortfolioController from './PortfolioController';
+import ValueController from './ValueController';
+
 
 export {
   BlogController,
@@ -11,5 +14,7 @@ export {
   MessageController,
   PostController,
   UserController,
-  ShoeController
+  ShoeController,
+  PortfolioController,
+  ValueController
 };
