@@ -13,7 +13,7 @@ class ValueController {
         return res.status(200).json(portfolios);
       };
     */
-
+    
 
     public show = async (
         req: Request,
@@ -24,6 +24,22 @@ class ValueController {
         const value : IValue = await Value.findById(id).exec();
         return res.status(200).json(value);
       };
+
+    
+    public showValueFromShoeID = async (
+      req: Request,
+      res: Response,
+      next: NextFunction,
+    ) => {
+      try {
+        const { referredProduct } = req.params;
+        const value = await Value.find()
+          .where('referredProduct', referredProduct)
+        return res.status(200).json(value);
+      } catch (err) {
+        next(err);
+      }
+    };
 }
 
 export default ValueController;

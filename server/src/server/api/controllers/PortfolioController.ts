@@ -20,6 +20,22 @@ class PortfolioController {
         const portfolios : IPortfolio = await Portfolio.findById(id).exec();
         return res.status(200).json(portfolios);
       };
+
+    
+    public showPortfolioFromMemberID = async (
+      req: Request,
+      res: Response,
+      next: NextFunction,
+    ) => {
+      try {
+        const { referredProfile } = req.params;
+        const portfolio = await Portfolio.find()
+          .where('referredProfile', referredProfile)
+        return res.status(200).json(portfolio);
+      } catch (err) {
+        next(err);
+      }
+    };
 }
 
 export default PortfolioController;

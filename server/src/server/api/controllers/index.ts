@@ -6,6 +6,7 @@ import UserController from './UserController';
 import ShoeController from './ShoeController';
 import PortfolioController from './PortfolioController';
 import ValueController from './ValueController';
+import MemberController from './MemberController';
 
 
 export {
@@ -16,5 +17,6 @@ export {
   UserController,
   ShoeController,
   PortfolioController,
-  ValueController
+  ValueController,
+  MemberController
 };

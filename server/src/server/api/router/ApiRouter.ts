@@ -14,7 +14,8 @@ import {
   UserController,
   ShoeController,
   PortfolioController,
-  ValueController
+  ValueController,
+  MemberController
 } from '../controllers';
 import { Value } from 'src/server/models/mongoose';
 
@@ -28,6 +29,7 @@ class ApiRouter {
   private shoeController : ShoeController;
   private portfolioController : PortfolioController;
   private valueController : ValueController ;
+  private memberController: MemberController;
   private config: IConfig;
   private authService: AuthService;
 
@@ -50,6 +52,7 @@ class ApiRouter {
     this.shoeController = new ShoeController();
     this.portfolioController = new PortfolioController();
     this.valueController = new ValueController();
+    this.memberController = new MemberController();
   }
 
   private registerRoutes(): void {
@@ -105,6 +108,14 @@ class ApiRouter {
 
     // this.router.get('/value', this.valueController.index)
     this.router.get('/value/:id ', this.valueController.show)
+    this.router.get('/value/shoe/:id', this.valueController.showValueFromShoeID)
+
+    /*
+     * Member routes
+     */
+
+    this.router.get('/member', this.memberController.index)
+    this.router.get('/member/:id', this.memberController.show)
 
   }
 }

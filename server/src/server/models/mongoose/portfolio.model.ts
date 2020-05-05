@@ -1,10 +1,11 @@
 import { default as mongoose, Document, Schema } from 'mongoose';
 import { IValue } from './value.model';
 import { IUser } from './user.model';
+import { IMember } from './member.model';
 
 interface IPortfolio extends Document {
   referredProducts : Array<IValue['_id']>;
-  referredProfile : IUser['_id'] ;
+  referredProfile : IMember['_id'] ;
   totalWorth : number ;
   totalItems : number ; 
   _createdAt: number;

@@ -6,6 +6,8 @@ import { IConfig } from '../config';
 import {
   Shoe,
   IShoe,
+  Member,
+  IMember
 } from '../../models/mongoose';
 
 class MongoDBDatabase {
@@ -14,12 +16,14 @@ class MongoDBDatabase {
   private db: Connection;
 
   private shoes: Array<IShoe>;
+  private members: Array<IMember>;
 
   constructor(logger: ILogger, config: IConfig) {
     this.logger = logger;
     this.config = config;
 
     this.shoes = [];
+    this.members = [];
   }
 
   public connect(): Promise<any> {
@@ -59,6 +63,48 @@ class MongoDBDatabase {
     });
   }
 
+
+  private memberCreate = async (
+    firstName: string,
+    lastName: string,
+    shoeSize : number,
+    email : string,
+    ) => {
+      
+      const memberDetails = {
+        firstName,
+        lastName,
+        shoeSize,
+        email
+      }
+      const member = new Member(memberDetails);
+  
+      try {
+        const newMember = await member.save();
+  
+        this.logger.info(`Message created with id ${newMember._id}`, {});
+      } catch (error) {
+        this.logger.error('An error occurred when creating a message', error);
+      }
+    };
+
+  private createMembers = async () => {
+    const promises = [];
+    // const fn = faker.name.firstName();
+    // const ln = faker.name.lastName();
+    for (let i = 0; i < 10; i++) {
+      promises.push(
+        this.memberCreate(  
+          faker.name.firstName(),
+          faker.name.lastName(),
+          faker.random.number(12),
+          faker.internet.email()
+        ),
+      );
+    }
+    return await Promise.all(promises);
+  };
+
   private shoeCreate = async (
     shoeName: string,
     shoeBrand: string,
@@ -97,13 +143,13 @@ class MongoDBDatabase {
     };
 
     public seed = async () => {
-    this.shoes = await Shoe.estimatedDocumentCount()
+    this.members = await Member.estimatedDocumentCount()
       .exec()
       .then(async count => {
         if (count === 0) {
-          await this.createShoes();
+          await this.createMembers();
         }
-        return Shoe.find().exec();
+        return Member.find().exec();
       });
   }
 
