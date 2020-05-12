@@ -108,34 +108,61 @@ class MongoDBDatabase {
   private shoeCreate = async (
     shoeName: string,
     shoeBrand: string,
-    productSku : string
+    productSku : string,
+    imageUrl : string
     ) => {
       
       const shoeDetails = {
         shoeName,
         shoeBrand,
-        productSku
+        productSku,
+        imageUrl
       }
       const shoe = new Shoe(shoeDetails);
   
       try {
-        const newDrink = await shoe.save();
+        const newShoe = await shoe.save();
   
-        this.logger.info(`Message created with id ${newDrink._id}`, {});
+        this.logger.info(`Message created with id ${newShoe._id}`, {});
       } catch (error) {
         this.logger.error('An error occurred when creating a message', error);
       }
     };
 
+    private getData = async (kw: string) => {
+      const fetch = require("node-fetch");
+      // kw specifies the search term for items to add to db
+      const modifiedUrl = `https://stockx.com/api/browse?productCategory=sneakers&currency=EUR&_search=${kw}&dataType=product&country=BE`;
+      const response  = await fetch(modifiedUrl, {
+          method: 'GET',
+          headers: {
+          'accept': '*/*', 'accept-encoding': 'gzip, deflate, br', 
+          'accept-language': 'nl-NL,nl;q=0.9,en-US;q=0.8,en;q=0.7,fr;q=0.6,de;q=0.5',
+          'appos': 'web', 'appversion': '0.10', 'pragma': 'cache', 'sec-fetch-mode': 'cors', 
+          'sec-fetch-site': 'same-origin', 
+          'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36', 
+          'x-anonymous-id': 'undefined', 'x-requested-with': 'XMLHttpRequest'}
+      });
+  
+      const data = await response.json()
+      const products = data['Products'];
+      return products
+    }
+   
     private createShoes = async () => {
       const promises = [];
 
-      for (let i = 0; i < 10; i++) {
+      
+      const products = await this.getData('Jordan 1 Womens')
+
+
+      for (let i = 0; i < products.length ; i++) {
         promises.push(
           this.shoeCreate(
-            faker.lorem.word(),
-            faker.company.companyName(),
-            faker.random.uuid()
+            products[i]['title'],
+            products[i]['brand'],
+            products[i]['styleId'],
+            products[i]['media']['smallImageUrl']
           ),
         );
       }
@@ -143,13 +170,13 @@ class MongoDBDatabase {
     };
 
     public seed = async () => {
-    this.members = await Member.estimatedDocumentCount()
+    this.shoes = await Shoe.estimatedDocumentCount()
       .exec()
       .then(async count => {
-        if (count === 0) {
-          await this.createMembers();
-        }
-        return Member.find().exec();
+        //if (count === 0) {
+          await this.createShoes();
+        //}
+        return Shoe.find().exec();
       });
   }
 

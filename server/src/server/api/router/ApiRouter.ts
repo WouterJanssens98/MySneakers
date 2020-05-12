@@ -94,6 +94,9 @@ class ApiRouter {
      */
     this.router.get('/shoes',this.shoeController.index)
     this.router.get('/shoes/:id',this.shoeController.show)
+    this.router.get('/shoes/model/:id', this.shoeController.detail)
+    
+    
 
     /*
      * Portfolio routes
