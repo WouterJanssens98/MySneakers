@@ -29,9 +29,8 @@ class PortfolioController {
       next: NextFunction,
     ) => {
       try {
-        const { referredProfile } = req.params;
-        const portfolio = await Portfolio.find()
-          .where('referredProfile', referredProfile)
+        const { id } = req.params;
+        const portfolio = await Portfolio.find( { "referredMember" : id } );
         return res.status(200).json(portfolio);
       } catch (err) {
         next(err);
@@ -45,10 +44,12 @@ class PortfolioController {
   
       try {
         const portfolioUpdate = {
-          referredShoe : req.body.referredShoe,
-          shoeSize: req.body.shoeSize,
-          stockxValue: req.body.stockxValue,
+          referredValues : req.body.referredValues,
+          totalWorth: req.body.totalWorth,
+          totalItems: req.body.totalItems,
         };
+
+        // TO DO eventueel berekeningen in backend doen
         const portfolio = await Portfolio.findOneAndUpdate({ _id: id }, portfolioUpdate, {
           new: true,
         }).exec();
