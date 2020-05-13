@@ -21,8 +21,8 @@ class ShoeController {
         res: Response,
         next: NextFunction,
       ): Promise<Response<any>> => {
-        const { id } = req.params;
-        const shoesFromBrand: Array<IShoe> = await Shoe.find( {shoeBrand : id} ).exec();
+        const { brand } = req.params;
+        const shoesFromBrand: Array<IShoe> = await Shoe.find( {shoeBrand : brand} ).exec();
         return res.status(200).json(shoesFromBrand);
       };
 

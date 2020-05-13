@@ -15,6 +15,7 @@ import {
 } from './middleware';
 import { IAppError } from './utilities';
 import { Environment, ILogger, IConfig, AuthService } from './services';
+import bodyParser from "body-parser";
 
 class App {
   public app: Application;
@@ -36,6 +37,7 @@ class App {
 
   private createExpress(): void {
     this.app = express();
+    //this.app.use(bodyParser.json());
     GlobalMiddleware.load(this.rootPath, this.app, this.config);
     if (this.config.env === Environment.development) {
       MorganMiddleware.load(this.app);

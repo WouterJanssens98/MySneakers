@@ -66,6 +66,7 @@ class PostController {
       const post = await postCreate.save();
       return res.status(201).json(post);
     } catch (err) {
+      console.log(err);
       next(err);
     }
   };

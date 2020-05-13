@@ -93,7 +93,7 @@ class ApiRouter {
      * Shoe routes
      */
     this.router.get('/shoes',this.shoeController.index)
-    this.router.get('/shoes/:id',this.shoeController.show)
+    this.router.get('/shoes/:brand',this.shoeController.show)
     this.router.get('/shoes/model/:id', this.shoeController.detail)
     
     
@@ -103,15 +103,19 @@ class ApiRouter {
      */
 
     this.router.get('/portfolio', this.portfolioController.index)
-    this.router.get('/portfolio/:id ', this.portfolioController.show)
+    this.router.get('/portfolio/:id', this.portfolioController.show)
+    this.router.put('/portfolio/:id' , this.portfolioController.update)
 
     /*
      * Value routes
      */
 
-    // this.router.get('/value', this.valueController.index)
-    this.router.get('/value/:id ', this.valueController.show)
-    this.router.get('/value/shoe/:id', this.valueController.showValueFromShoeID)
+    this.router.get('/values', this.valueController.index)
+    this.router.get('/values/:id ', this.valueController.show)
+    this.router.get('/values/shoe/:id', this.valueController.showValueFromShoeID)
+    this.router.post('/values', this.valueController.store);
+    this.router.put('/values/:id', this.valueController.update);
+    this.router.delete('/values/:id', this.valueController.destroy);
 
     /*
      * Member routes

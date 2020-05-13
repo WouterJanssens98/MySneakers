@@ -1,4 +1,4 @@
-import { default as mongoose, Connection } from 'mongoose';
+import { default as mongoose, Connection, Schema } from 'mongoose';
 import { default as faker } from 'faker';
 
 import { ILogger } from '../logger';
@@ -7,7 +7,11 @@ import {
   Shoe,
   IShoe,
   Member,
-  IMember
+  IMember,
+  IPortfolio,
+  Portfolio,
+  IValue,
+  Value
 } from '../../models/mongoose';
 
 class MongoDBDatabase {
@@ -64,7 +68,9 @@ class MongoDBDatabase {
   }
 
 
+
   private memberCreate = async (
+    role : string,
     firstName: string,
     lastName: string,
     shoeSize : number,
@@ -72,6 +78,7 @@ class MongoDBDatabase {
     ) => {
       
       const memberDetails = {
+        role,
         firstName,
         lastName,
         shoeSize,
@@ -81,10 +88,12 @@ class MongoDBDatabase {
   
       try {
         const newMember = await member.save();
-  
-        this.logger.info(`Message created with id ${newMember._id}`, {});
+
+        this.createPortfolio(newMember._id);
+      
+        this.logger.info(`Member created with id ${newMember._id}`, {});
       } catch (error) {
-        this.logger.error('An error occurred when creating a message', error);
+        this.logger.error('An error occurred when creating a member', error);
       }
     };
 
@@ -95,6 +104,7 @@ class MongoDBDatabase {
     for (let i = 0; i < 10; i++) {
       promises.push(
         this.memberCreate(  
+          'admin',
           faker.name.firstName(),
           faker.name.lastName(),
           faker.random.number(12),
@@ -123,9 +133,9 @@ class MongoDBDatabase {
       try {
         const newShoe = await shoe.save();
   
-        this.logger.info(`Message created with id ${newShoe._id}`, {});
+        this.logger.info(`Shoe created with id ${newShoe._id}`, {});
       } catch (error) {
-        this.logger.error('An error occurred when creating a message', error);
+        this.logger.error('An error occurred when creating a shoe', error);
       }
     };
 
@@ -169,14 +179,55 @@ class MongoDBDatabase {
       return await Promise.all(promises);
     };
 
+    private portfolioCreate = async (
+      totalWorth : string,
+      totalItems: number,
+      referredValues : Array<Schema.Types.ObjectId>,
+      referredMember : Schema.Types.ObjectId
+      ) => {
+        
+        const portfolioDetails = {
+          totalWorth,
+          totalItems,
+          referredValues,
+          referredMember
+        }
+        const portfolio = new Portfolio(portfolioDetails);
+    
+        try {
+          const newPortfolio = await portfolio.save();
+    
+          this.logger.info(`Portfolio created with id ${newPortfolio._id}`, {});
+        } catch (error) {
+          this.logger.error('An error occurred when creating a portfolio', error);
+        }
+      };
+  
+    private createPortfolio = async ($id : Schema.Types.ObjectId) => {
+      const promises = [];
+      // const fn = faker.name.firstName();
+      // const ln = faker.name.lastName();
+        promises.push(
+          this.portfolioCreate(  
+            '0',
+            0,
+            null,
+            $id
+          ),
+        );
+      
+      return await Promise.all(promises);
+    };
+
+
     public seed = async () => {
-    this.shoes = await Shoe.estimatedDocumentCount()
+    this.members = await Member.estimatedDocumentCount()
       .exec()
       .then(async count => {
-        //if (count === 0) {
-          await this.createShoes();
-        //}
-        return Shoe.find().exec();
+        if (count === 0) {
+          await this.createMembers();
+       }
+        return Member.find().exec();
       });
   }
 

@@ -1,6 +1,7 @@
 import { default as mongoose, Document, Schema } from 'mongoose';
 
 interface IMember extends Document {
+    role : string;
     firstName: string;
     lastName: string;
     shoeSize : number ;
@@ -11,7 +12,8 @@ interface IMember extends Document {
 }
 
 const memberSchema: Schema = new Schema(
-  {
+  { 
+    role : { type : String, required : true, default : 'user', max:128},
     firstName: { type: String, required: true, unique: false, max: 128 },
     lastName: { type: String, required: true, unique: false, max: 128 },
     shoeSize : { type : Number, required : true, unique : false , max :128},
