@@ -2,12 +2,12 @@ import { default as React, useCallback, useEffect, useState} from 'react';
 import { default as classnames } from 'classnames';
 import { useApi } from '../../services';
 
-const PostListPaged = ({children, paged, onReadMore, className, ...rest }) => {
+const PostListPaged = ({children, limit, skip , onReadMore, className, ...rest }) => {
   const { findAllPosts } = useApi();
   const [ posts, setPosts ] = useState();
   const [ pagination, setPagination ] = useState({
-    limit: paged.limit,
-    page: paged.skip,
+    limit: limit,
+    page: skip,
     pages: 1,
     total: 1
   });
@@ -20,7 +20,7 @@ const PostListPaged = ({children, paged, onReadMore, className, ...rest }) => {
           limit: pagination.limit,
           skip: currentPageIndex
         });
-        setPosts(data.docs);
+        setPosts(data);
         setPagination({
           limit: data.limit,
           page: data.page,
@@ -60,12 +60,12 @@ const PostListPaged = ({children, paged, onReadMore, className, ...rest }) => {
         <div className="col-12 col-sm-12 col-md-6 col-lg-4" key={index}>
           <article className="card" key={post._id}>
             <picture className="card-img-top">
-              <img src={post.imageUrl} alt={post.title} />
+              <img src={post.imageUrl} alt={post.shoeName} />
             </picture>
             <div className="card-body">
-              <h5 className="card-title">{post.title}</h5>
+              <h5 className="card-title">{post.shoeName}</h5>
               <p className="card-text">{post.synopsis}</p>
-              <button className="btn btn-primary" onClick={ev => handleReadMore(ev, post._id)}>Lees meer</button>
+              <button className="ui primary button" onClick={ev => handleReadMore(ev, post._id)}>View shoe</button>
             </div>
           </article>
         </div>

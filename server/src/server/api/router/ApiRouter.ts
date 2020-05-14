@@ -89,6 +89,11 @@ class ApiRouter {
     this.router.post('/auth/signin/', this.userController.signInLocal);
     this.router.post('/auth/signup/', this.userController.signupLocal);
 
+
+    /// PROJECT ROUTES ///
+
+
+
     /*
      * Shoe routes
      */

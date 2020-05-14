@@ -13,7 +13,8 @@ const PostList = ({children, amount, onReadMore, className, ...rest }) => {
           limit: amount,
           skip: 1
         });
-        setPosts(data.docs);
+        console.log(data);
+        setPosts(data);
       }
 
       fetchPosts();
@@ -42,12 +43,12 @@ const PostList = ({children, amount, onReadMore, className, ...rest }) => {
         <div className="col-12 col-sm-12 col-md-6 col-lg-4" key={index}>
           <article className="card" key={post._id}>
             <picture className="card-img-top">
-              <img src={post.imageUrl} alt={post.title} />
+              <img src={post.imageUrl} alt={post.shoeName} />
             </picture>
             <div className="card-body">
-              <h5 className="card-title">{post.title}</h5>
+              <h5 className="card-title">{post.shoeName}</h5>
               <p className="card-text">{post.synopsis}</p>
-              <button href="#" className="btn btn-primary" onClick={ev => handleReadMore(ev, post._id)}>Lees meer</button>
+              <button href="#" className="btn btn-primary" onClick={ev => handleReadMore(ev, post._id)}>View details</button>
             </div>
           </article>
         </div>

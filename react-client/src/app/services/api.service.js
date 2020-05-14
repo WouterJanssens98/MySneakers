@@ -9,16 +9,18 @@ const ApiProvider = ({children}) => {
   const BASE_URL = `${apiConfig.baseURL}`;
 
   const findAllPosts = async (query = null) => {
-    let url = `${BASE_URL}/posts`;
+    let url = `${BASE_URL}/shoes`;
+    
     if (query !== null) {
       url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(query);
     }
+    console.log(url);
     const response = await fetch(url);
     return response.json();
   }
 
   const findPost = async (id) => {
-    let url = `${BASE_URL}/posts/${id}`;
+    let url = `${BASE_URL}/shoes/model/${id}`;
     const response = await fetch(url);
     return response.json();
   }

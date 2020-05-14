@@ -1,16 +1,17 @@
 import { default as React, Fragment } from 'react';
 
 import { PageSection } from '../../components';
+import { ShoeSection } from '../section';
 
 const PostDetail = ({ post }) => {
   return (
     <Fragment>
       {!!post
-        ? <PageSection className="post--detail" title={post.title} subTitle={post.synopsis}>
+        ? <ShoeSection className="post--detail" sku={post.productSku} imageUrl={post.imageUrl} title={post.shoeName} subTitle={post.shoeBrand}>
             <div className="post__body" dangerouslySetInnerHTML={{
-              __html: post.body
+              __html: post.imageUrl
             }}></div>
-          </PageSection>
+          </ShoeSection>
         : <Fragment></Fragment>
       }
     </Fragment>

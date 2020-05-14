@@ -1,6 +1,5 @@
 import { default as mongoose, Document, Schema } from 'mongoose';
 import { IValue } from './value.model';
-import { IUser } from './user.model';
 import { IMember } from './member.model';
 
 interface IPortfolio extends Document {
