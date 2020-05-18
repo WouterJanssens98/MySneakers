@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
 import * as jwt from 'jsonwebtoken';
 import { apiConfig } from '../config';
+import fetch from 'node-fetch';
+import { ApiProvider} from './api.service'
 
 const AuthContext = createContext();
 const useAuth = () => useContext(AuthContext);
@@ -52,12 +54,15 @@ const AuthProvider = ({ children }) => {
     };
 
     const response = await fetch(`${url}`, options);
-    const user = await response.json();
-
-    localStorage.setItem('mern:authUser', JSON.stringify(user));
-    setCurrentUser(user);
-
-    return user;
+    if (response.ok) {
+      const user = await response.json();
+      localStorage.setItem('mern:authUser', JSON.stringify(user));
+      setCurrentUser(user);
+      return user;
+    }
+    else {
+      return response;
+    }
   }
 
   const signup = async (email, password) => {
@@ -75,7 +80,7 @@ const AuthProvider = ({ children }) => {
     };
     const response = await fetch(`${url}`, options);
     const user = await response.json();
-
+    
     localStorage.setItem('mern:authUser', JSON.stringify(user));
     setCurrentUser(user);
 

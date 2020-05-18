@@ -1,26 +1,14 @@
 import {default as React} from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { apiConfig } from '../../config';
 import { default as classnames } from 'classnames';
 import './PageSection.scss';
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-// onchange={getStockXPrice(e.options[e.selectedIndex].value, sku)}
-
-
-const PageSection = ({children, classes, sku, imageUrl ,title, subTitle, readMoreRoute}) => {
+const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, readMoreRoute}) => {
 
 
     async function getStockXPrice(size, sku){
@@ -138,9 +126,54 @@ const PageSection = ({children, classes, sku, imageUrl ,title, subTitle, readMor
         // Update whenever another size is chosen by the user
         console.log(`Your shoe size changed to ${size}, updating value.....`);
         getStockXPrice(size, sku);
+        document.getElementById('success').innerHTML = ""
     },[size]);
 
-  
+    const userData = localStorage.getItem("mern:authUser");
+    const signedInUser = JSON.parse(userData)['id'];
+   
+
+    const handleSubmit = async (ev) => {
+      ev.preventDefault();
+      const url = `${apiConfig.baseURL}/values`;
+      const details = {
+      referredShoe : id,
+      shoeSize : size,
+      stockxValue : value
+      };
+
+    const myHeaders = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    const options = {
+      method: 'POST',
+      headers: myHeaders,
+      body : JSON.stringify(details)
+    };
+
+    const response = await fetch(`${url}`, options);
+    const resData = await response.json()
+    const url2  = `${apiConfig.baseURL}/portfolio/add/${resData['id']}`;
+    const details2 = {
+      "referredUser" : signedInUser
+    }
+    const options2 = {
+      method: 'POST',
+      headers: myHeaders,
+      body : JSON.stringify(details2)
+    };
+    const response2 = await fetch(`${url2}`, options2);
+
+    const data2 = await response2.json()
+    if(data2.ok){
+      console.log("Successfully added to portfolio")
+    }
+    document.getElementById('success').innerHTML = "Successfully added to portfolio"
+    
+   
+
+  }
 
   return (
 <div>
@@ -157,55 +190,58 @@ const PageSection = ({children, classes, sku, imageUrl ,title, subTitle, readMor
 
    
   <div className="ui card centered">
-  <div className="image"><img src={imageUrl} /></div>
-  <div className="content">
-    <div className="header">{sku}</div>
-    <div className="description"> Retail Price : € {stockxData ? stockxData['Product']['retailPrice'] : "Not specified"}</div>
-    <div className="description"> Release Date : {stockxData ? stockxData['Product']['releaseDate'] : "Not specified"}</div>
-   
-  </div>
-  <div className="extra content">
-  <form>
-       <fieldset>
-          <p>
-                    <label>Choose Size</label>
-                    <br></br>
-                    <select onChange={e => setSize(e.currentTarget.value)} defaultValue = "10" id = "myList">
-                    <option value=""  disabled hidden></option>
-                    <option value = "4">US4</option>
-                    <option value = "4.5">US4.5</option>
-                    <option value = "5">US5</option>
-                    <option value = "5.5">US5.5</option>
-                    <option value = "6">US6</option>
-                    <option value = "6.5">US6.5</option>
-                    <option value = "7">US7</option>
-                    <option value = "7.5">US7.5</option>
-                    <option value = "8">US8</option>
-                    <option value = "8.5">US8.5</option>
-                    <option value = "9">US9</option>
-                    <option value = "9.5">US9.5</option>
-                    <option selected defaultValue="10" value = "10">US10</option>
-                    <option value = "10.5">US10.5</option>
-                    <option value = "11">US11</option>
-                    <option value = "11.5">US11.5</option>
-                    <option value = "12">US12</option>
-                    <option value = "12.5">US12.5</option>
-                    <option value = "13">US13</option>
-                    <option value = "13.5">US13.5</option>
-                    <option value = "14">US14</option>
-                    
-                    </select>
-                </p>
-                <div>
-                    <label>Current Market Value </label>
-                    <p  className="header">€ {value}</p>
-                </div>
-
-
-                </fieldset>
-            </form>
-    
+      <div className="image"><img src={imageUrl} /></div>
+        <div className="content">
+          <div className="header">{sku}</div>
+          <div className="description"> Retail Price : € {stockxData ? stockxData['Product']['retailPrice'] : "Not specified"}</div>
+          <div className="description"> Release Date : {stockxData ? stockxData['Product']['releaseDate'] : "Not specified"}</div>
+        
         </div>
+        <div className="extra content">
+        <form  onSubmit={(ev) => handleSubmit(ev)}>
+            <fieldset>
+                <p>
+                          <label>Choose Size</label>
+                          <br></br>
+                          <select onChange={e => setSize(e.currentTarget.value)} defaultValue = "10" id = "myList">
+                          <option value=""  disabled hidden></option>
+                          <option value = "4">US4</option>
+                          <option value = "4.5">US4.5</option>
+                          <option value = "5">US5</option>
+                          <option value = "5.5">US5.5</option>
+                          <option value = "6">US6</option>
+                          <option value = "6.5">US6.5</option>
+                          <option value = "7">US7</option>
+                          <option value = "7.5">US7.5</option>
+                          <option value = "8">US8</option>
+                          <option value = "8.5">US8.5</option>
+                          <option value = "9">US9</option>
+                          <option value = "9.5">US9.5</option>
+                          <option selected defaultValue="10" value = "10">US10</option>
+                          <option value = "10.5">US10.5</option>
+                          <option value = "11">US11</option>
+                          <option value = "11.5">US11.5</option>
+                          <option value = "12">US12</option>
+                          <option value = "12.5">US12.5</option>
+                          <option value = "13">US13</option>
+                          <option value = "13.5">US13.5</option>
+                          <option value = "14">US14</option>
+                          
+                          </select>
+                      </p>
+                      <div>
+                          <label>Current Market Value </label>
+                          <p  className="header">€ {value}</p>
+                      </div>
+
+
+                      </fieldset>
+
+                      <button class="ui button" type="submit"> Add To My Portfolio</button>
+                      <p id= "success"></p>
+                  </form>
+          
+              </div>
     </div>
 
 </div>

@@ -107,8 +107,11 @@ class ApiRouter {
      * Portfolio routes
      */
     this.router.get('/portfolio/member/:id', this.portfolioController.showPortfolioFromMemberID)
+    this.router.get('/portfolio/user/:id', this.portfolioController.showPortfolioFromUserID)
     this.router.get('/portfolio', this.portfolioController.index)
     this.router.get('/portfolio/:id', this.portfolioController.show)
+    this.router.post('/portfolio/:id', this.portfolioController.store)
+    this.router.post('/portfolio/add/:id', this.portfolioController.add)
     this.router.put('/portfolio/:id' , this.portfolioController.update)
     
 

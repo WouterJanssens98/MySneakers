@@ -37,6 +37,20 @@ class PortfolioController {
       }
     };
 
+    public showPortfolioFromUserID = async (
+      req: Request,
+      res: Response,
+      next: NextFunction,
+    ) => {
+      try {
+        const { id } = req.params;
+        const portfolio = await Portfolio.find( { "referredUser" : id } );
+        return res.status(200).json(portfolio);
+      } catch (err) {
+        next(err);
+      }
+    };
+
 
     
     update = async (req: Request, res: Response, next: NextFunction) => {
@@ -62,6 +76,36 @@ class PortfolioController {
         next(err);
       }
     };
+
+    store = async (req: Request, res: Response, next: NextFunction) => {
+      console.log(req.body);
+      const { id } = req.params;
+      try {
+        const portfolioCreate = new Portfolio({
+          referredUser: id
+        });
+        const portfolio = await portfolioCreate.save();
+        return res.status(201).json(portfolio);
+      } catch (err) {
+        console.log(err);
+        next(err);
+      }
+    };
+
+    
+    add = async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+      const user = req.body.referredUser;
+      const portfolio = await Portfolio.update( 
+        { "referredUser" : user }, 
+        {$push : {
+          referredValues : id
+        }} );
+        return res.status(201).json(portfolio);
+    };
+
+
+
 }
 
 export default PortfolioController;

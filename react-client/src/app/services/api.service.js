@@ -8,6 +8,21 @@ const useApi = () => useContext(ApiContext);
 const ApiProvider = ({children}) => {
   const BASE_URL = `${apiConfig.baseURL}`;
 
+
+  const createPortfolio = async (id) => {
+    let url = `${BASE_URL}/portfolio/${id}`;
+
+    const options = {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    };
+    const response = await fetch(url, options);
+    return response.json();
+  }
+
   const findAllPosts = async (query = null) => {
     let url = `${BASE_URL}/shoes`;
     
@@ -104,3 +119,6 @@ export {
   ApiProvider,
   useApi,
 }
+
+
+

@@ -16,6 +16,7 @@ const valueSchema: Schema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Shoe',
       required: true,
+      unique : false
     },
     shoeSize : { type : String, required : true, unique : false , max :128},
     stockxValue : { type : Number , required : false, unique: false, max : 9999},

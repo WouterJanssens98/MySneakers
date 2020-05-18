@@ -1,10 +1,12 @@
 import { default as mongoose, Document, Schema } from 'mongoose';
 import { IValue } from './value.model';
 import { IMember } from './member.model';
+import { IUser} from './user.model';
 
 interface IPortfolio extends Document {
   referredValues : Array<IValue['_id']>;
   referredMember : IMember['_id'] ;
+  referredUser : IUser['_id'];
   totalWorth : number ;
   totalItems : number ; 
   _createdAt: number;
@@ -19,9 +21,17 @@ const portfolioSchema: Schema = new Schema(
       ref: 'Values',
       required: false,
     }],
+    /*
     referredMember: {
       type: Schema.Types.ObjectId,
       ref: 'Member',
+      required: true,
+      default : "test"
+    },
+    /*/
+    referredUser: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
     totalWorth : { type : String, required : true, unique : false , default: '0 EUR', max :128},
@@ -54,6 +64,14 @@ portfolioSchema.virtual('member', {
   foreignField: '_id',
   justOne: true,
 });
+
+portfolioSchema.virtual('user', {
+  ref: 'User',
+  localField: 'referredUser',
+  foreignField: '_id',
+  justOne: true,
+});
+
 
 const Portfolio = mongoose.model<IPortfolio>('Portfolio', portfolioSchema);
 

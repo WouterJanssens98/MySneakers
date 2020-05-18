@@ -7,7 +7,7 @@ const PostDetail = ({ post }) => {
   return (
     <Fragment>
       {!!post
-        ? <ShoeSection className="post--detail" sku={post.productSku} imageUrl={post.imageUrl} title={post.shoeName} subTitle={post.shoeBrand}>
+        ? <ShoeSection className="post--detail" id={post._id} sku={post.productSku} imageUrl={post.imageUrl} title={post.shoeName} subTitle={post.shoeBrand}>
             <div className="post__body" dangerouslySetInnerHTML={{
               __html: post.imageUrl
             }}></div>

@@ -183,14 +183,14 @@ class MongoDBDatabase {
       totalWorth : string,
       totalItems: number,
       referredValues : Array<Schema.Types.ObjectId>,
-      referredMember : Schema.Types.ObjectId
+      referredUser : Schema.Types.ObjectId
       ) => {
         
         const portfolioDetails = {
           totalWorth,
           totalItems,
           referredValues,
-          referredMember
+          referredUser,
         }
         const portfolio = new Portfolio(portfolioDetails);
     
@@ -203,7 +203,7 @@ class MongoDBDatabase {
         }
       };
   
-    private createPortfolio = async ($id : Schema.Types.ObjectId) => {
+    public createPortfolio = async ($id : Schema.Types.ObjectId) => {
       const promises = [];
       // const fn = faker.name.firstName();
       // const ln = faker.name.lastName();

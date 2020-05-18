@@ -21,7 +21,6 @@ interface IProfile {
 interface IUser extends Document {
   firstName: string;
   lastName: string;
-  nickName : string;
   shoeSize : number ;
   email: string;
   _createdAt: number;

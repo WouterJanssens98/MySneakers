@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { User, IUser } from '../../models/mongoose';
+import { User, IUser, IPortfolio, Portfolio } from '../../models/mongoose';
 
 import { AuthService, IConfig } from '../../services';
 import { NotFoundError } from '../../utilities';
-
 class UserController {
   private authService: AuthService;
   private config: IConfig;
@@ -105,11 +104,12 @@ class UserController {
     }
 
     const newUser: IUser = new User({
-      email: email,
+      email: email
     });
 
     const user: IUser = await newUser.save();
 
+  
     const token = this.authService.createToken(user);
     return res.status(200).json({
       email: user.email,
@@ -128,7 +128,7 @@ class UserController {
     this.authService.passport.authenticate(
       'local',
       { session: this.config.auth.jwt.session },
-      (err, user, info) => {
+       (err, user, info) => {
         if (err) {
           return next(err);
         }
@@ -136,8 +136,10 @@ class UserController {
           return next(new NotFoundError());
         }
         const token = this.authService.createToken(user);
+
         return res.status(200).json({
           email: user.email,
+          id: user._id,
           token: `${token}`,
           strategy: 'local',
           role: user.role,

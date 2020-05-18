@@ -35,4 +35,11 @@ $border: 2px solid #000;
     &__footer {
         margin-top: $grid-gutter-width;
     }
+
+}
+
+#success {
+    color : green;
+    font-style: bold;
+    margin-top: 5px;
 }

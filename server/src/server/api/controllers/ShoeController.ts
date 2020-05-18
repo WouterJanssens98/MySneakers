@@ -22,7 +22,7 @@ class ShoeController {
         next: NextFunction,
       ): Promise<Response<any>> => {
         const { brand } = req.params;
-        const shoesFromBrand: Array<IShoe> = await Shoe.find( {shoeBrand : brand} ).exec();
+        const shoesFromBrand: Array<IShoe> = await Shoe.find( {shoeBrand : brand}).exec();
         return res.status(200).json(shoesFromBrand);
       };
 
