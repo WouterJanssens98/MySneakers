@@ -1,8 +1,18 @@
 import { default as React } from 'react';
 import { default as classnames } from 'classnames';
 import { default as moment } from 'moment';
+import { useApi } from '../../../services/';
 
 const PostsTable = ({children, posts, onDelete, onEdit}) => {
+
+
+  const { getValueFromID, getShoeFromID } = useApi();
+
+  // const { data, setData } = useState();
+
+  const componenDidMount = () => {
+    console.log("Mounted!")
+  }
 
   const handleDelete = (event, postId, deleteMode = 0) => {
     if (typeof onDelete === 'function') {
@@ -16,27 +26,31 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
     }
   };
 
+  const getValue = async (id) => {
+
+  }
   return (
     <table className="table">
       <thead>
         <tr>
           <th></th>
-          <th>Shoe Name</th>
-          <th>Brand</th>
+          <th>Email</th>
+          <th>Role</th>
           <th>Created</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {posts && posts.map(post => (
+        {posts && posts['referredValues'].map(post => (
+          
           <tr
             key={post._id}
           >
             <td>
-              
+            {`${getValueFromID(post)}`}
             </td>
-            <td>{post.shoeName}</td>
-            <td>{post.shoeBrand}</td>
+            
+            <td>{post}</td>
             <td>
               {moment(posts._createdAt).format('DD/MM/YYYY')}
             </td>

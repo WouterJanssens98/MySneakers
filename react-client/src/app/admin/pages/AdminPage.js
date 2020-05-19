@@ -7,6 +7,8 @@ import DashboardPage from './DashboardPage';
 import PostCreatePage from './PostCreatePage';
 import PostEditPage from './PostEditPage';
 import PostsPage from './PostsPage';
+import UsersPage from './UsersPage';
+import PortfolioPage from './PortfolioPage';
 
 const AdminPage = ({children}) => {
 
@@ -18,7 +20,9 @@ const AdminPage = ({children}) => {
       <Route exact path={Routes.BACKOFFICE_DASHBOARD} component={DashboardPage} />
       <Route exact path={Routes.BACKOFFICE_POSTS} component={PostsPage} />
       <Route exact path={Routes.BACKOFFICE_POSTS_CREATE} component={PostCreatePage} />
-      <Route exact path={Routes.BACKOFFICE_POSTS_EDIT} component={PostEditPage} />     
+      <Route exact path={Routes.BACKOFFICE_POSTS_EDIT} component={PostEditPage} />    
+      <Route exact path={Routes.BACKOFFICE_USERS} component={UsersPage} />    
+      <Route exact path={Routes.BACKOFFICE_PORTFOLIO} component={PortfolioPage} />    
     </Fragment>
   );
 };

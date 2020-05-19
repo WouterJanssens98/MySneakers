@@ -21,8 +21,8 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
       <thead>
         <tr>
           <th></th>
-          <th>Shoe Name</th>
-          <th>Brand</th>
+          <th>Email</th>
+          <th>Role</th>
           <th>Created</th>
           <th>Actions</th>
         </tr>
@@ -35,8 +35,8 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
             <td>
               
             </td>
-            <td>{post.shoeName}</td>
-            <td>{post.shoeBrand}</td>
+            <td>{post.email}</td>
+            <td>{post.role}</td>
             <td>
               {moment(posts._createdAt).format('DD/MM/YYYY')}
             </td>

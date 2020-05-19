@@ -11,7 +11,7 @@ import PostsTable from './PostsTable';
 import './PostList.scss';
 
 const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {  
-  const { deletePost, findAllPosts } = useApi();
+  const { deletePost, findAllUsers } = useApi();
   const { addToast } = useToast();
   const [ posts, setPosts ] = useState();
   const [ currentPageIndex, setCurrentPageIndex ] = useState(skip);
@@ -25,7 +25,7 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
 
   useEffect(() => {
     const fetchPosts = async () => {        
-      const data = await findAllPosts({
+      const data = await findAllUsers({
         limit: pagination.limit,
         skip: currentPageIndex
       });
@@ -42,7 +42,7 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
       fetchPosts();
     }
     
-  }, [findAllPosts, currentPageIndex, postToDelete, pagination.limit]);
+  }, [findAllUsers, currentPageIndex, postToDelete, pagination.limit]);
 
   const handlePage = (ev, pageIndex) => {
     ev.preventDefault();

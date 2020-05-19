@@ -34,6 +34,39 @@ const ApiProvider = ({children}) => {
     return response.json();
   }
 
+  const findAllUsers = async (query = null) => {
+    let url = `${BASE_URL}/users`;
+    console.log(url);
+    const response = await fetch(url);
+    return response.json();
+  }
+
+  
+  const findPortfolio = async (id) => {
+    let url = `${BASE_URL}/portfolio/user/${id}`;
+    const response = await fetch(url);
+    const portfolio  = await response.json()
+    return portfolio[0];
+  
+  }
+
+  const getValueFromID = async (id) => {
+    let url = `${BASE_URL}/values/${id}`;
+    const response = await fetch(url);
+    const test = await response.json();
+    const value =  test['stockxValue'];
+    console.log(value.type)
+    return value;
+  }
+
+  const getShoeFromID = async (id) => {
+    let url = `${BASE_URL}//shoes/model/${id}`;
+    const response = await fetch(url);
+    return response.json();
+  }
+
+
+
   const findPost = async (id) => {
     let url = `${BASE_URL}/shoes/model/${id}`;
     const response = await fetch(url);
@@ -108,7 +141,7 @@ const ApiProvider = ({children}) => {
   }
 
   return (
-    <ApiContext.Provider value={{ createPostViewModel, deletePost, findAllPosts, findPost, storePost, editPostViewModel, updatePost }}>
+    <ApiContext.Provider value={{ createPostViewModel, deletePost, findAllPosts, findAllUsers, findPortfolio,getValueFromID, getShoeFromID, findPost, storePost, editPostViewModel, updatePost }}>
       {children}
     </ApiContext.Provider>
   );

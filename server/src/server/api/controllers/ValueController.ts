@@ -14,17 +14,30 @@ class ValueController {
         return res.status(200).json(values);
       };
     
-    
-
+    /*
+      
     public show = async (
-        req: Request,
-        res: Response,
-        next: NextFunction,
-      ): Promise<Response<any>> => {
-        const { id } = req.params;
-        const value : IValue = await Value.findById(id).exec();
-        return res.status(200).json(value);
+      req: Request,
+      res: Response,
+      next: NextFunction,
+    ): Promise<Response<any>> => {
+      const { id } = req.params;
+      const value : IValue = await Value.findById(id).exec();
+      return res.status(200).json(value);
+    };
+
+    */
+
+    public show = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+          const { id } = req.params;
+          const value = await Value.findById(id).exec();
+          return res.status(200).json(value);
+        } catch (err) {
+          next(err);
+        }
       };
+
 
     // show value(s) from specific shoe objectId
     public showValueFromShoeID = async (

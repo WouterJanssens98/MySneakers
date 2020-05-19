@@ -11,7 +11,7 @@ import PostsTable from './PostsTable';
 import './PostList.scss';
 
 const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {  
-  const { deletePost, findAllPosts } = useApi();
+  const { deletePost, findPortfolio } = useApi();
   const { addToast } = useToast();
   const [ posts, setPosts ] = useState();
   const [ currentPageIndex, setCurrentPageIndex ] = useState(skip);
@@ -23,12 +23,11 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
   });
   const [ postToDelete, setPostToDelete ] = useState(null);
 
+
+
   useEffect(() => {
     const fetchPosts = async () => {        
-      const data = await findAllPosts({
-        limit: pagination.limit,
-        skip: currentPageIndex
-      });
+      const data = await findPortfolio(JSON.parse(localStorage.getItem('mern:authUser'))['id']);
       setPosts(data);
       setPagination({ 
         limit: data.limit, 
@@ -42,7 +41,7 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
       fetchPosts();
     }
     
-  }, [findAllPosts, currentPageIndex, postToDelete, pagination.limit]);
+  }, [findPortfolio, currentPageIndex, postToDelete, pagination.limit]);
 
   const handlePage = (ev, pageIndex) => {
     ev.preventDefault();
@@ -82,7 +81,7 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
     <div className={className}>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">Shoes</h6>
+          <h6 className="m-0 font-weight-bold text-primary">Portfolio</h6>
         </div>
         <div className="card-body">
           <div className="table-responsive">

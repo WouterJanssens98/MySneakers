@@ -19,7 +19,7 @@ const Navigation = ({children}) => {
     <nav className="navbar navbar-expand-lg  navbar-light bg-light">
       <Link className="navbar-brand" to={Routes.LANDING}>
         <img src={Logo} width="30" height="30" className="d-inline-block align-top" alt="" />
-        Grafische en Digitale Media
+            MySneakers
       </Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>

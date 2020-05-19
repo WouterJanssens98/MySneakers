@@ -245,7 +245,6 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
                       </fieldset>
 
                       <button class="ui green button" type="submit"> Buy on StockX</button>
-                      <p id= "success"></p>
                   </form>
           
               </div>
@@ -299,7 +298,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
 
                       </fieldset>
 
-                      <button class="ui blue button" type="submit"> Add To My Portfolio</button>
+                      <button class="ui green button" type="submit"> Add To My Portfolio</button>
                       <p id= "success"></p>
                   </form>
           

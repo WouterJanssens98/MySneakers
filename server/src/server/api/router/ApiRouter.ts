@@ -120,7 +120,7 @@ class ApiRouter {
      */
 
     this.router.get('/values', this.valueController.index)
-    this.router.get('/values/:id ', this.valueController.show)
+    this.router.get('/values/:id', this.valueController.show)
     this.router.get('/values/shoe/:id', this.valueController.showValueFromShoeID)
     this.router.post('/values', this.valueController.store);
     this.router.put('/values/:id', this.valueController.update);
