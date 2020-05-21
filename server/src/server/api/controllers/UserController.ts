@@ -108,7 +108,7 @@ class UserController {
     });
 
     const user: IUser = await newUser.save();
-
+    
   
     const token = this.authService.createToken(user);
     return res.status(200).json({

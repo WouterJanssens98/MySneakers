@@ -29,20 +29,7 @@ class PortfolioController {
         return res.status(200).json(portfolio);
       };
 
-    
-    public showPortfolioFromMemberID = async (
-      req: Request,
-      res: Response,
-      next: NextFunction,
-    ) => {
-      try {
-        const { id } = req.params;
-        const portfolio = await Portfolio.find( { "referredMember" : id } );
-        return res.status(200).json(portfolio);
-      } catch (err) {
-        next(err);
-      }
-    };
+  
 
     public showPortfolioFromUserID = async (
       req: Request,
@@ -51,7 +38,14 @@ class PortfolioController {
     ) => {
       try {
         const { id } = req.params;
-        const portfolio = await Portfolio.find( { "referredUser" : id } );
+        const portfolio = await Portfolio.find( { "referredUser" : id } )
+        .populate({
+          path : 'values',
+          populate : {
+            path : 'shoe'
+          }
+        })
+        .exec();
         return res.status(200).json(portfolio);
       } catch (err) {
         next(err);

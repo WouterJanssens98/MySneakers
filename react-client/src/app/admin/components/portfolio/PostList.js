@@ -28,6 +28,7 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
   useEffect(() => {
     const fetchPosts = async () => {        
       const data = await findPortfolio(JSON.parse(localStorage.getItem('mern:authUser'))['id']);
+      console.log(data)
       setPosts(data);
       setPagination({ 
         limit: data.limit, 

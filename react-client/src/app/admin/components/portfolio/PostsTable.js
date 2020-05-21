@@ -5,14 +5,11 @@ import { useApi } from '../../../services/';
 
 const PostsTable = ({children, posts, onDelete, onEdit}) => {
 
-
   const { getValueFromID, getShoeFromID } = useApi();
 
   // const { data, setData } = useState();
 
-  const componenDidMount = () => {
-    console.log("Mounted!")
-  }
+  
 
   const handleDelete = (event, postId, deleteMode = 0) => {
     if (typeof onDelete === 'function') {
@@ -33,26 +30,28 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
     <table className="table">
       <thead>
         <tr>
-          <th></th>
-          <th>Email</th>
-          <th>Role</th>
+          <th>Shoe</th>
+          <th>Size</th>
+          <th>Price</th>
           <th>Created</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {posts && posts['referredValues'].map(post => (
+
+     
+        {posts && posts['values'].map(post => (
           
           <tr
             key={post._id}
           >
             <td>
-            {`${getValueFromID(post)}`}
+            {post['shoe']['0']['shoeName']}
             </td>
             
-            <td>{post}</td>
+            <td> {post['shoeSize']}</td>
             <td>
-              {moment(posts._createdAt).format('DD/MM/YYYY')}
+            € {post['stockxValue']}
             </td>
             <td className="d-flex justify-content-around">
               <a href="#" aria-label="edit" onClick={ev => handleEdit(ev, post.id)}><i className="fas fa-edit"></i></a>
@@ -61,6 +60,8 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
             </td>
           </tr>
         ))}
+
+
       </tbody>
     </table>
   );
