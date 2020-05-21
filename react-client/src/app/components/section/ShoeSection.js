@@ -210,7 +210,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
                 <p>
                           <label>Choose Size</label>
                           <br></br>
-                          <select onChange={e => setSize(e.currentTarget.value)} defaultValue = "10" id = "myList">
+                          <select onChange={e => setSize(e.currentTarget.value)} defaultValue = {size} id = "myList">
                           <option value=""  disabled hidden></option>
                           <option value = "4">US4</option>
                           <option value = "4.5">US4.5</option>
@@ -224,7 +224,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
                           <option value = "8.5">US8.5</option>
                           <option value = "9">US9</option>
                           <option value = "9.5">US9.5</option>
-                          <option selected defaultValue="10" value = "10">US10</option>
+                          <option value = "10">US10</option>
                           <option value = "10.5">US10.5</option>
                           <option value = "11">US11</option>
                           <option value = "11.5">US11.5</option>

@@ -18,7 +18,14 @@ class PortfolioController {
         next: NextFunction,
       ): Promise<Response<any>> => {
         const { id } = req.params;
-        const portfolio : IPortfolio = await Portfolio.findById(id).exec();
+        const portfolio : IPortfolio = await Portfolio.findById(id)
+        .populate({
+          path : 'values',
+          populate : {
+            path : 'shoe'
+          }
+        })
+        .exec();
         return res.status(200).json(portfolio);
       };
 
