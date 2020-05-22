@@ -207,44 +207,15 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
         <div className="header">Buy on StockX</div>
         <form  onSubmit={(ev) => handleSubmit(ev)}>
             <fieldset>
-                <p>
-                          <label>Choose Size</label>
-                          <br></br>
-                          <select onChange={e => setSize(e.currentTarget.value)} defaultValue = {size} id = "myList">
-                          <option value=""  disabled hidden></option>
-                          <option value = "4">US4</option>
-                          <option value = "4.5">US4.5</option>
-                          <option value = "5">US5</option>
-                          <option value = "5.5">US5.5</option>
-                          <option value = "6">US6</option>
-                          <option value = "6.5">US6.5</option>
-                          <option value = "7">US7</option>
-                          <option value = "7.5">US7.5</option>
-                          <option value = "8">US8</option>
-                          <option value = "8.5">US8.5</option>
-                          <option value = "9">US9</option>
-                          <option value = "9.5">US9.5</option>
-                          <option value = "10">US10</option>
-                          <option value = "10.5">US10.5</option>
-                          <option value = "11">US11</option>
-                          <option value = "11.5">US11.5</option>
-                          <option value = "12">US12</option>
-                          <option value = "12.5">US12.5</option>
-                          <option value = "13">US13</option>
-                          <option value = "13.5">US13.5</option>
-                          <option value = "14">US14</option>
-                          
-                          </select>
-                      </p>
+        
                       <div>
-                          <label>Total Buying Price</label>
-                          <p  className="header">€ {value}</p>
+                          <label>Total Buying Price (fees included)</label>
+                          <p  className="header"> {value ? "€" + (value*1.03 +15).toFixed(2) : " " }</p>
                       </div>
-
 
                       </fieldset>
 
-                      <button class="ui green button" type="submit"> Buy on StockX</button>
+                      <a href="https://stockx.com/search?s=" target="_blank" class="ui green button" type="submit"> Buy on StockX</a>
                   </form>
           
               </div>
@@ -253,10 +224,9 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
     <div className="ui card">
       <div className="image"><img src={imageUrl} /></div>
         <div className="content">
-          <div className="header">{sku}</div>
-          <div className="description"> Retail Price : € {stockxData ? stockxData['Product']['retailPrice'] : "Not specified"}</div>
-          <div className="description"> Release Date : {stockxData ? stockxData['Product']['releaseDate'] : "Not specified"}</div>
-        
+        <div class="header" id="colorway"> {stockxData ? "Model : " + stockxData['Product']['primaryCategory'] + " " + stockxData['Product']['secondaryCategory'] : "No specified model"}</div>
+         <div class="header" id="colorway"> {stockxData ? "Color : " + stockxData['Product']['traits'][1]["value"] : "No specified color"}</div>
+
         </div>
         <div className="extra content">
         <form  onSubmit={(ev) => handleSubmit(ev)}>
@@ -306,58 +276,18 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
     </div>
 
     <div className="ui card">
-      <div className="image"><img src={imageUrl} /></div>
         <div className="content">
-          <div className="header">{sku}</div>
+          <div className="header">More Info</div>
+          <div className="description"> Product Code : {stockxData ? stockxData['Product']['styleId'] : "Not specified"}</div>
           <div className="description"> Retail Price : € {stockxData ? stockxData['Product']['retailPrice'] : "Not specified"}</div>
           <div className="description"> Release Date : {stockxData ? stockxData['Product']['releaseDate'] : "Not specified"}</div>
-        
+          <div className="content">
+          </div>
+          <div className="header">Description</div>
+          <div className="description">{stockxData ? stockxData['Product']['description'].replace(/^(\s*<br( \/)?>)*|(<br( \/)?>\s*)*$/gm," ") : "Not specified"}</div>
+
         </div>
-        <div className="extra content">
-        <form  onSubmit={(ev) => handleSubmit(ev)}>
-            <fieldset>
-                <p>
-                          <label>Choose Size</label>
-                          <br></br>
-                          <select onChange={e => setSize(e.currentTarget.value)} defaultValue = "10" id = "myList">
-                          <option value=""  disabled hidden></option>
-                          <option value = "4">US4</option>
-                          <option value = "4.5">US4.5</option>
-                          <option value = "5">US5</option>
-                          <option value = "5.5">US5.5</option>
-                          <option value = "6">US6</option>
-                          <option value = "6.5">US6.5</option>
-                          <option value = "7">US7</option>
-                          <option value = "7.5">US7.5</option>
-                          <option value = "8">US8</option>
-                          <option value = "8.5">US8.5</option>
-                          <option value = "9">US9</option>
-                          <option value = "9.5">US9.5</option>
-                          <option selected defaultValue="10" value = "10">US10</option>
-                          <option value = "10.5">US10.5</option>
-                          <option value = "11">US11</option>
-                          <option value = "11.5">US11.5</option>
-                          <option value = "12">US12</option>
-                          <option value = "12.5">US12.5</option>
-                          <option value = "13">US13</option>
-                          <option value = "13.5">US13.5</option>
-                          <option value = "14">US14</option>
-                          
-                          </select>
-                      </p>
-                      <div>
-                          <label>Current Market Value </label>
-                          <p  className="header">€ {value}</p>
-                      </div>
-
-
-                      </fieldset>
-
-                      <button class="ui button" type="submit"> Add To My Portfolio</button>
-                      <p id= "success"></p>
-                  </form>
-          
-              </div>
+        
     </div>
 
 

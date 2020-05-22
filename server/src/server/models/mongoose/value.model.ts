@@ -44,6 +44,7 @@ valueSchema.virtual('shoe', {
 
 
 
+
 const Value = mongoose.model<IValue>('Value', valueSchema);
 
 export { IValue, Value, valueSchema };

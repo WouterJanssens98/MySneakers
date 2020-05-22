@@ -5,7 +5,7 @@ import { IUser} from './user.model';
 interface IPortfolio extends Document {
   referredValues : Array<IValue['_id']>;
   referredUser : IUser['_id'];
-  totalWorth : number ;
+  totalWorth : string ;
   totalItems : number ; 
   _createdAt: number;
   _modifiedAt: number;

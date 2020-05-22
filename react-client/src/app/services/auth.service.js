@@ -66,6 +66,8 @@ const AuthProvider = ({ children }) => {
   }
 
   const signup = async (email, password) => {
+
+    // create new user
     let url = `${apiConfig.baseURL}/auth/signup`;
 
     const body = {
@@ -73,9 +75,15 @@ const AuthProvider = ({ children }) => {
       password
     };
 
+    const myHeaders = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+
     const options = {
       method: 'POST',
-      body: body,
+      headers: myHeaders,
+      body: JSON.stringify(body),
       redirect: 'follow'
     };
     const response = await fetch(`${url}`, options);
@@ -83,6 +91,24 @@ const AuthProvider = ({ children }) => {
     
     localStorage.setItem('mern:authUser', JSON.stringify(user));
     setCurrentUser(user);
+    
+    // create new portfolio for this user
+    // first, get id of the user that currently signed up
+
+
+
+
+    url = `${apiConfig.baseURL}/portfolio/${user.id}`;
+
+    const settings = {
+      method: 'POST',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    const portfolioCreation = await fetch(`${url}`, settings);
+
+    const portfolio = await portfolioCreation.json()
 
     return user;
   }

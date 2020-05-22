@@ -1,15 +1,29 @@
 import { default as React } from 'react';
+import { useState, useEffect } from 'react';
 import { default as classnames } from 'classnames';
 import { default as moment } from 'moment';
 import { useApi } from '../../../services/';
+import { apiConfig } from '../../../config';
+
+
+
 
 const PostsTable = ({children, posts, onDelete, onEdit}) => {
 
-  const { getValueFromID, getShoeFromID } = useApi();
+  const { updatePortfolio } = useApi();
+  const [worth, setWorth] = useState(null);
+  const [items, setItems] = useState(null);
 
-  // const { data, setData } = useState();
-
-  
+  /*
+  useEffect( () => {
+    if(worth !== null){
+      console.log("Worth is not null!")
+      
+    }else {
+      console.log("Worth is null!")
+    }
+  }, [worth, items])
+  */
 
   const handleDelete = (event, postId, deleteMode = 0) => {
     if (typeof onDelete === 'function') {
@@ -23,23 +37,53 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
     }
   };
 
-  const getValue = async (id) => {
+  
+  const setValue = async () => {
+    const table = document.getElementsByClassName("table");
+    const amount = document.querySelectorAll('.test').length
+    let sumVal = 0;
+    const test = table[0]
+    
+    for(var i = 1; i < amount; i++)
+            {
+                sumVal = sumVal + parseInt(test.rows[i].cells[2].innerHTML);
+            }
+            
+    const data = {
+      totalItems : amount,
+      totalWorth : sumVal
+    };
 
+    setWorth(sumVal)
+    setItems(amount)
+
+    const response = await updatePortfolio(posts.id, String(sumVal),amount)    
   }
+
+
   return (
+    <div>
+    <div id="portfolioData">
+
+        
+        <a onClick={setValue} class="ui animated button">
+        <div class="visible content">Show Portfolio Statistics</div>
+        <div class="hidden content"><i aria-hidden="true" class="arrow up icon"></i></div>
+        </a>
+
+    </div>
+
     <table className="table">
       <thead>
         <tr>
           <th>Shoe</th>
           <th>Size</th>
-          <th>Price</th>
-          <th>Created</th>
+          <th>Price (euro)</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-
-     
+        
         {posts && posts['values'].map(post => (
           
           <tr
@@ -50,8 +94,8 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
             </td>
             
             <td> {post['shoeSize']}</td>
-            <td>
-            € {post['stockxValue']}
+            <td class="test" value={post['stockxValue']}>
+            {post['stockxValue']}
             </td>
             <td className="d-flex justify-content-around">
               <a href="#" aria-label="edit" onClick={ev => handleEdit(ev, post.id)}><i className="fas fa-edit"></i></a>
@@ -64,7 +108,9 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
 
       </tbody>
     </table>
+    </div>
   );
 };
 
 export default PostsTable;
+

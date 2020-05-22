@@ -27,10 +27,10 @@ class PortfolioController {
         })
         .exec();
         return res.status(200).json(portfolio);
-      };
+      };  
 
-  
 
+    
     public showPortfolioFromUserID = async (
       req: Request,
       res: Response,
@@ -52,14 +52,12 @@ class PortfolioController {
       }
     };
 
-
     
-    update = async (req: Request, res: Response, next: NextFunction) => {
+    public update = async (req: Request, res: Response, next: NextFunction) => {
       const { id } = req.params;
   
       try {
         const portfolioUpdate = {
-          referredValues : req.body.referredValues,
           totalWorth: req.body.totalWorth,
           totalItems: req.body.totalItems,
         };
@@ -77,6 +75,8 @@ class PortfolioController {
         next(err);
       }
     };
+
+    
 
     store = async (req: Request, res: Response, next: NextFunction) => {
       console.log(req.body);

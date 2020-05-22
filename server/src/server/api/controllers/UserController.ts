@@ -104,19 +104,19 @@ class UserController {
     }
 
     const newUser: IUser = new User({
-      email: email
+      email: email,
+      localProvider:{
+         password: password
+      },
     });
 
     const user: IUser = await newUser.save();
-    
-  
+
     const token = this.authService.createToken(user);
     return res.status(200).json({
       email: user.email,
-      token: `${token}`,
-      strategy: 'local',
+      id: user._id,
       role: user.role,
-      avatar: user.profile.avatar,
     });
   };
 

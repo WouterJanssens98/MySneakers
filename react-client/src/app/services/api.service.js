@@ -23,6 +23,26 @@ const ApiProvider = ({children}) => {
     return response.json();
   }
 
+  const updatePortfolio = async (id,worth,items) => {
+    let url = `${BASE_URL}/portfolio/${id}`;
+
+    const options = {
+      method: "PUT",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "totalWorth" : worth,
+        "totalItems" : items
+      })
+    };
+    const response = await fetch(url, options);
+    console.log("Successfully updated portfolio values!")
+    return response.json();
+  }
+
+
   const findAllPosts = async (query = null) => {
     let url = `${BASE_URL}/shoes`;
     
@@ -49,6 +69,7 @@ const ApiProvider = ({children}) => {
     return portfolio[0];
   
   }
+
 
   const getValueFromID = async (id) => {
     let url = `${BASE_URL}/values/${id}`;
@@ -141,7 +162,7 @@ const ApiProvider = ({children}) => {
   }
 
   return (
-    <ApiContext.Provider value={{ createPostViewModel, deletePost, findAllPosts, findAllUsers, findPortfolio,getValueFromID, getShoeFromID, findPost, storePost, editPostViewModel, updatePost }}>
+    <ApiContext.Provider value={{ createPostViewModel, deletePost, updatePortfolio, findAllPosts, findAllUsers, findPortfolio,getValueFromID, getShoeFromID, findPost, storePost, editPostViewModel, updatePost }}>
       {children}
     </ApiContext.Provider>
   );
