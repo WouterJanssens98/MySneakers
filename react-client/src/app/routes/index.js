@@ -1,5 +1,6 @@
-export const LANDING = '/';
+export const LANDING = '/all';
 export const HOME = '/home';
+export const SEARCH = '/';
 export const CONTACT = '/contact';
 export const POSTS = '/posts';
 export const POST_DETAIL = '/posts/:id';

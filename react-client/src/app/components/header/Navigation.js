@@ -17,7 +17,7 @@ const Navigation = ({children}) => {
 
   return (
     <nav className="navbar navbar-expand-lg  navbar-light bg-light">
-      <Link className="navbar-brand" to={Routes.LANDING}>
+      <Link className="navbar-brand" to={Routes.HOME}>
         <img src={Logo} width="30" height="30" className="d-inline-block align-top" alt="" />
             MySneakers
       </Link>
@@ -26,7 +26,8 @@ const Navigation = ({children}) => {
       </button>
       <div className="collapse navbar-collapse  justify-content-end" id="navbarNavAltMarkup">
         <div className="navbar-nav d-flex">
-          <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.LANDING}>Home</NavLink>
+          <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.SEARCH}>Home</NavLink>
+          <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.LANDING}>All Sneakers</NavLink>
           <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.POSTS}>Nieuws</NavLink>
           <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.CONTACT}>Contact</NavLink>
           {!!currentUser

@@ -54,6 +54,15 @@ const ApiProvider = ({children}) => {
     return response.json();
   }
 
+  const findMatchingPosts = async (query) => {
+    let url = `${BASE_URL}/shoes/${query}`;
+    const response = await fetch(url);
+    console.log(response);
+    return response.json();
+  }
+
+  
+
   const findAllUsers = async (query = null) => {
     let url = `${BASE_URL}/users`;
     console.log(url);
@@ -162,7 +171,7 @@ const ApiProvider = ({children}) => {
   }
 
   return (
-    <ApiContext.Provider value={{ createPostViewModel, deletePost, updatePortfolio, findAllPosts, findAllUsers, findPortfolio,getValueFromID, getShoeFromID, findPost, storePost, editPostViewModel, updatePost }}>
+    <ApiContext.Provider value={{ createPostViewModel, deletePost, updatePortfolio, findAllPosts, findMatchingPosts, findAllUsers, findPortfolio,getValueFromID, getShoeFromID, findPost, storePost, editPostViewModel, updatePost }}>
       {children}
     </ApiContext.Provider>
   );
