@@ -284,7 +284,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
           <div className="content">
           </div>
           <div className="header">Description</div>
-          <div className="description">{stockxData ? stockxData['Product']['description'].replace(/^(\s*<br( \/)?>)*|(<br( \/)?>\s*)*$/gm," ") : "Not specified"}</div>
+          <div className="description">{stockxData && stockxData['Product']['description'] ? stockxData['Product']['description'].replace(/^(\s*<br( \/)?>)*|(<br( \/)?>\s*)*$/gm," ") : "Not specified"}</div>
 
         </div>
         

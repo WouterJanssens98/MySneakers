@@ -60,11 +60,8 @@ const Footer = ({ children }) => {
               <div className="col-12">
                 <section className="links__contact">
                   <h4 className="d-none">Contact</h4>
-                  <span><a href="http://www.gdm.gent" title="GDM.GENT website">&copy; www.gdm.gent</a> is een website van de opleidings Bachelor in de Grafische en digitale media van de <a href="http://www.arteveldehogeschool.be" rel="noopener noreferrer" title="Officiële website van de Arteveldehogeschool">Arteveldehogeschool</a>.</span>
-                  <span>Industrieweg 232, 9030 Mariakerke (Gent)</span>
-                  <span>+32 9 234 86 00</span>
-                  <span><a href="mailto:info.grafische.digitalemedia@arteveldehs.be?subject=Contact via gdm.gent" rel="noopener noreferrer" title="Contacteer Grafische en digitale media via email">info.grafische.digitalemedia@arteveldehs.be</a></span>
-                  <span>Website made by <a href="http://www.gdm.gent" title="Website GDM.GENT">GDM.GENT</a></span>
+                  <span><a href="http://www.gdm.gent" title="GDM.GENT website">&copy; MySneakers</a> is een website van de opleidings Bachelor in de Grafische en digitale media van de <a href="http://www.arteveldehogeschool.be" rel="noopener noreferrer" title="Officiële website van de Arteveldehogeschool">Arteveldehogeschool</a>.</span>
+                  <span>Website made by <a href="https://www.linkedin.com/in/wouter-janssens-5a5742194/" title="LinkedIn Profile Wouter Janssens">Wouter Janssens </a>from 2NMD.</span>
                 </section>
               </div>
               <div className="col-12">
@@ -81,7 +78,7 @@ const Footer = ({ children }) => {
         <footer className="page-section__footer">
           <div className="container">
             <section className="meta__ahs">
-              <h4 className="d-none">Copyright &copy; 2018 Arteveldehogeschool</h4>
+              <h4 className="d-none">Copyright &copy; 2020 Arteveldehogeschool</h4>
               <a className="footer__logo" rel="noopener noreferrer" href="https://www.arteveldehogeschool.be/opleidingen/bachelor/grafische-en-digitale-media" title="Website Arteveldehogeschool">
                 <img src="static/images/ahs_logo_small_color.png" width="200" alt="" />
               </a>
