@@ -13,7 +13,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
   const { updatePortfolio } = useApi();
   const [worth, setWorth] = useState(null);
   const [items, setItems] = useState(null);
-
+  const [highest, setHighest] = useState(null)
   /*
   useEffect( () => {
     if(worth !== null){
@@ -43,29 +43,61 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
     const amount = document.querySelectorAll('.test').length
     let sumVal = 0;
     const test = table[0]
-    
+    const highestPrice = []
     for(var i = 1; i < amount; i++)
             {
                 sumVal = sumVal + parseInt(test.rows[i].cells[2].innerHTML);
+                highestPrice.push(parseInt(test.rows[i].cells[2].innerHTML))
             }
             
     const data = {
       totalItems : amount,
       totalWorth : sumVal
     };
-
+    setHighest(Math.max(...highestPrice))
     setWorth(sumVal)
     setItems(amount)
 
-    const response = await updatePortfolio(posts.id, String(sumVal),amount)    
+    var x = document.getElementById("statistics");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+
+    const response = await updatePortfolio(posts.id, String(sumVal),amount)
   }
 
 
   return (
     <div>
+    <div style = {{display: "none"}} id="statistics">
+          <div class="ui statistics">
+        <div class="ui teal statistic">
+          <div class="value">
+            {items}
+            </div>
+          <div class="label">Shoes</div>
+        </div>
+        <div class="ui yellow statistic">
+          <div class="value">
+          € {worth}
+          </div>
+          <div class="label">Total Portfolio Value</div>
+        </div>
+        <div class="ui orange statistic">
+          <div class="value">
+          € {highest}
+          </div>
+          <div class="label">Highest valued item</div>
+        </div>
+    </div>
+
+    <br></br>
+
+    </div>
     <div id="portfolioData">
 
-        
         <a onClick={setValue} class="ui animated button">
         <div class="visible content">Show Portfolio Statistics</div>
         <div class="hidden content"><i aria-hidden="true" class="arrow up icon"></i></div>
