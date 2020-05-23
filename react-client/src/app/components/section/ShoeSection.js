@@ -209,7 +209,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
           <div>
               <label>Total Buying Price (fees included)</label>
               <p   id="price" > {value ? "€" + (value*1.03 +15).toFixed(2) : "No pairs available to buy in this size" }</p>
-              <a href="https://stockx.com/search?s=" target="_blank" class="ui green button" type="submit"> Buy on StockX</a>
+              <a href="https://stockx.com/search?s=" target="_blank" class="ui blue button" type="submit"> Buy on StockX</a>
           </div>
 
                   
@@ -263,7 +263,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
                       
                           <label>Current Market Value </label>
                           <p  id="price" >{value ? "€"+ value : "No current market price"}</p>
-                          <button class="ui green button" type="submit"> Add To My Portfolio</button>
+                          <button class="ui blue button" type="submit"> Add To My Portfolio</button>
                           <p id= "success"></p>
               </form>
               </div>

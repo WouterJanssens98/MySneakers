@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 
 import { PostListPaged, PageSection } from '../components';
 import * as Routes from '../routes';
+import mysneakers from '../_static/images/mysneakers.png';
 
 const PostsPage = ({children}) => {
   const history = useHistory();
@@ -13,7 +14,7 @@ const PostsPage = ({children}) => {
 
   return (
     <div className="">
-      <PageSection className="news" title={'Nieuws'} subTitle={'Ontdekt de laatste nieuwe weetjes'}>
+      <PageSection className="news"  image={mysneakers} title={'Nieuws'} subTitle={'Ontdekt de laatste nieuwe weetjes'}>
         <PostListPaged className="post-list align-items-center" paged={{limit: 6, skip: 1}} onReadMore={handlePostReadMore} />
       </PageSection>
     </div>

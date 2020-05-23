@@ -4,13 +4,14 @@ import { default as classnames } from 'classnames';
 
 import './PageSection.scss';
 
-const PageSection = ({children, classes, title, subTitle, readMoreRoute}) => {
+const PageSection = ({children, classes, title, subTitle, image, readMoreRoute}) => {
   return (
     <section className={classnames('page-section', classes)}>
       <header className="page-section__header">        
         <div className="container">
           <div className="row">
             <div className="col-12 text-center title">
+              <img src={image}></img>
               <h1 className="d-flex justify-content-center"><span>{title}</span></h1>
               {!!subTitle ? (<h2 className="text-black-50">{subTitle}</h2>) : ''}
             </div>

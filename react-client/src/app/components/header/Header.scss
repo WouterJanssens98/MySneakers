@@ -2,7 +2,7 @@
 
 .page-header {
     margin-bottom: $grid-gutter-width;
-    background-image: linear-gradient(black, black), url(../../_static/images/collection.jpg);
+    background-color : blue
 
     
 }
@@ -18,4 +18,14 @@
         border-radius: 50%;
         object-fit: cover;
     }
+}
+
+#navbar{
+    background-color  :rgb(113, 187, 243);
+    color : white
+}
+
+#navtekst {
+    color: white;
+    font-size :18px
 }
