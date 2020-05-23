@@ -17,7 +17,7 @@ function App() {
         <ApiProvider>
           <Router basename='/'>
             <Switch>
-            <RouteWithLayout exact path={Routes.LANDING} component={HomePage} layout={PageLayout} />
+              <RouteWithLayout exact path={Routes.LANDING} component={HomePage} layout={PageLayout} />
               <Redirect from={Routes.HOME} to={Routes.SEARCH} />
               <RouteWithLayout exact path={Routes.CONTACT} component={ContactPage} layout={PageLayout} />
               <RouteWithLayout exact path={Routes.SEARCH} component={SearchPage} layout={PageLayout} />

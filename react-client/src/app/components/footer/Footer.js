@@ -64,31 +64,11 @@ const Footer = ({ children }) => {
                   <span>Website made by <a href="https://www.linkedin.com/in/wouter-janssens-5a5742194/" title="LinkedIn Profile Wouter Janssens">Wouter Janssens </a>from 2NMD.</span>
                 </section>
               </div>
-              <div className="col-12">
-              <section className="links__gdm">
-                  <h4 className="d-none">Gdm</h4>
-                  {gdmLinks && gdmLinks.map((link, index) => (
-                    <a key={index} href={link.url} title={ link.title } target={ `_${link.target}` }>{link.title}</a>
-                  ))}                  
-                </section>
-              </div>
             </div>
           </div>
         </div>
         <footer className="page-section__footer">
           <div className="container">
-            <section className="meta__ahs">
-              <h4 className="d-none">Copyright &copy; 2020 Arteveldehogeschool</h4>
-              <a className="footer__logo" rel="noopener noreferrer" href="https://www.arteveldehogeschool.be/opleidingen/bachelor/grafische-en-digitale-media" title="Website Arteveldehogeschool">
-                <img src="static/images/ahs_logo_small_color.png" width="200" alt="" />
-              </a>
-            </section>
-            <section className="meta__terms">
-              <h4 className="d-none">Gebruikersvoorwaarden</h4>
-              <a className="footer__term-link" rel="noopener noreferrer" href="https://www.arteveldehogeschool.be/disclaimer" target="_blank">Disclaimer</a>
-              <a className="footer__term-link" rel="noopener noreferrer" href="https://www.arteveldehogeschool.be/privacybeleid" target="_blank">Privacybeleid</a>
-              <a className="footer__term-link" rel="noopener noreferrer" href="https://www.arteveldehogeschool.be/cookiebeleid" target="_blank">Cookiebeleid</a>
-            </section>
             <section className="meta__social">
               <h4 className="d-none">Social media links</h4>
               <a className="footer__socialmedia-link" rel="noopener noreferrer" href="https://www.facebook.com/GrafischeendigitalemediaArteveldehogeschool/" title="Facebook pagina" target="_blank"><i className="fab fa-facebook-f"></i></a>

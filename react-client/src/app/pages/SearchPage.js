@@ -13,7 +13,7 @@ const SearchPage = ({children}) => {
 
   return (
     <div className="">
-      <PageSection className="news" title={'Search your sneakers'} subTitle={'Get to know market value with a click of a button'}>
+      <PageSection className="news" title={'Search your sneakers'} subTitle={'Get to know market value with the click of a button'}>
         <SearchListPaged className="post-list align-items-center" paged={{limit: 6, skip: 1}} onReadMore={handlePostReadMore} />
       </PageSection>
     </div>

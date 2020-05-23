@@ -2,6 +2,9 @@
 
 .page-header {
     margin-bottom: $grid-gutter-width;
+    background-image: linear-gradient(black, black), url(../../_static/images/collection.jpg);
+
+    
 }
 
 .auth-toggle {

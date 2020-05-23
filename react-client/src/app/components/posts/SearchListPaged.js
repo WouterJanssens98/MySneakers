@@ -40,9 +40,9 @@ const SearchListPaged = ({children, limit, skip , onReadMore, className, ...rest
   return (
     <div>
         <div id="searchString">
-            <div  class="ui icon input">
-                <input type="text" onChange={(ev) => setQuery(ev.target.value)} placeholder="Search sneaker..." />
-                <button className="ui button" onClick={ev => handleSearch()}>Go</button>
+            <div  class="ui large icon input">
+                <input type="text" onChange={(ev) => setQuery(ev.target.value)} placeholder="Yeezy" />
+                <button id="searchbtn" className="ui button" onClick={ev => handleSearch()}>Go</button>
 
             </div>
         </div>

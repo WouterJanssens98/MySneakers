@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
 
   const verifyUserFromLocalStorage = () => {
     if (JSON.parse(localStorage.getItem('mern:authUser'))) {
+
       try {
         const token = JSON.parse(localStorage.getItem('mern:authUser')).token;
         if (!token) {
@@ -18,7 +19,7 @@ const AuthProvider = ({ children }) => {
         }
         const decoded = jwt.verify(token, 'gdm_nmd_mobdev2');
         if (!decoded) {
-          throw new Error('Couldn\'t decode the token!');
+          throw new Error("Couldn't decode the token!");
         }
 
         if (decoded.exp > Date.now()) {
@@ -26,6 +27,7 @@ const AuthProvider = ({ children }) => {
         }
         return JSON.parse(localStorage.getItem('mern:authUser'));
       } catch (error) {
+
         return null;
       }
     }

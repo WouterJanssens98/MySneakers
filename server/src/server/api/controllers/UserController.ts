@@ -117,6 +117,7 @@ class UserController {
       email: user.email,
       id: user._id,
       role: user.role,
+      token: `${token}`,
     });
   };
 

@@ -116,7 +116,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
     }
 
 
-
+    
     const [size, setSize] = React.useState(10);
     const [value, setValue] = React.useState(null);
     const [stockxData, setData] = React.useState(null);
@@ -133,7 +133,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
     },[size]);
 
     const userData = localStorage.getItem("mern:authUser");
-    const signedInUser = JSON.parse(userData)['id'];
+    const signedInUser = JSON.parse(userData) ?  JSON.parse(userData)['id'] : null ;
    
 
     const handleSubmit = async (ev) => {
@@ -206,16 +206,15 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
         <div className="extra content">
         <div className="header">Buy on StockX</div>
         <form  onSubmit={(ev) => handleSubmit(ev)}>
-            <fieldset>
-        
-                      <div>
-                          <label>Total Buying Price (fees included)</label>
-                          <p  className="header"> {value ? "€" + (value*1.03 +15).toFixed(2) : " " }</p>
-                      </div>
+          <div>
+              <label>Total Buying Price (fees included)</label>
+              <p   id="price" > {value ? "€" + (value*1.03 +15).toFixed(2) : "No pairs available to buy in this size" }</p>
+              <a href="https://stockx.com/search?s=" target="_blank" class="ui green button" type="submit"> Buy on StockX</a>
+          </div>
 
-                      </fieldset>
+                  
 
-                      <a href="https://stockx.com/search?s=" target="_blank" class="ui green button" type="submit"> Buy on StockX</a>
+                     
                   </form>
           
               </div>
@@ -230,11 +229,11 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
         </div>
         <div className="extra content">
         <form  onSubmit={(ev) => handleSubmit(ev)}>
-            <fieldset>
-                <p>
+           
+                <div id="dropdown" >
                           <label>Choose Size</label>
                           <br></br>
-                          <select onChange={e => setSize(e.currentTarget.value)} defaultValue = "10" id = "myList">
+                          <select class="ui selection small dropdown" onChange={e => setSize(e.currentTarget.value)} defaultValue = "10" id = "myList">
                           <option value=""  disabled hidden></option>
                           <option value = "4">US4</option>
                           <option value = "4.5">US4.5</option>
@@ -259,19 +258,14 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
                           <option value = "14">US14</option>
                           
                           </select>
-                      </p>
-                      <div>
+                </div>
+                    
+                      
                           <label>Current Market Value </label>
-                          <p  className="header">€ {value}</p>
-                      </div>
-
-
-                      </fieldset>
-
-                      <button class="ui green button" type="submit"> Add To My Portfolio</button>
-                      <p id= "success"></p>
-                  </form>
-          
+                          <p  id="price" >{value ? "€"+ value : "No current market price"}</p>
+                          <button class="ui green button" type="submit"> Add To My Portfolio</button>
+                          <p id= "success"></p>
+              </form>
               </div>
     </div>
 

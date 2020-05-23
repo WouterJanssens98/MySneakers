@@ -4,6 +4,8 @@ import { default as classnames } from 'classnames';
 import { default as moment } from 'moment';
 import { useApi } from '../../../services/';
 import { apiConfig } from '../../../config';
+import * as Routes from '../../../routes';
+import { useHistory, Link } from 'react-router-dom';
 
 
 
@@ -87,7 +89,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
         </div>
         <div class="ui orange statistic">
           <div class="value">
-          € {highest}
+          € {highest ? highest : 0}
           </div>
           <div class="label">Highest valued item</div>
         </div>
@@ -100,11 +102,17 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
 
         <a onClick={setValue} class="ui animated button">
         <div class="visible content">Show Portfolio Statistics</div>
+        
         <div class="hidden content"><i aria-hidden="true" class="arrow up icon"></i></div>
         </a>
+  
+       
+        <Link className="btn btn-primary" to={Routes.SEARCH}>Add Sneakers</Link>
+        
 
     </div>
-
+    <div>
+    </div>
     <table className="table">
       <thead>
         <tr>

@@ -10,6 +10,7 @@ const Navigation = ({children}) => {
   const { currentUser, logout} = useAuth();
   let history = useHistory();
 
+  
   const handleLogout = async () => {
     const success = await logout();
     history.push(Routes.AUTH_SIGN_IN);
@@ -28,8 +29,6 @@ const Navigation = ({children}) => {
         <div className="navbar-nav d-flex">
           <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.SEARCH}>Home</NavLink>
           <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.LANDING}>All Sneakers</NavLink>
-          <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.POSTS}>Nieuws</NavLink>
-          <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.CONTACT}>Contact</NavLink>
           {!!currentUser
            ? (
             <div class="dropdown dropleft">
@@ -44,7 +43,10 @@ const Navigation = ({children}) => {
             </div>
            ) 
            : (
+             <div>
             <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.AUTH_SIGN_IN}>Sign In</NavLink>
+            <NavLink className="nav-item nav-link" activeClassName="active" to={Routes.AUTH_SIGNUP}>Sign Up</NavLink>
+            </div>
            )
           }
         </div>
