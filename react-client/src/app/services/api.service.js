@@ -41,9 +41,9 @@ const ApiProvider = ({children}) => {
     console.log("Successfully updated portfolio values!")
     return response.json();
   }
-
+  
   const updateUser = async (id, email, role) => {
-    let url = `${BASE_URL}/user/${id}`;
+    let url = `${BASE_URL}/users/${id}`;
 
     const options = {
       method: "PUT",

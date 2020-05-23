@@ -11,7 +11,6 @@ const UserEditPage = ({ children }) => {
   const { id } = useParams();
   const { editUserViewModel, updatePost } = useApi();
   const [ userViewModel, setUserViewModel ] = useState(null);
-  console.log(id)
   
 
   let history = useHistory();
@@ -19,7 +18,6 @@ const UserEditPage = ({ children }) => {
   useEffect(() => {
     const fetchPostViewModel = async () => {        
       const data = await editUserViewModel(id);
-      console.log(data)
       setUserViewModel(data);
 
     }

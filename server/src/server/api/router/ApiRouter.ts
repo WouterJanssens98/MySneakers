@@ -84,8 +84,8 @@ class ApiRouter {
      * Users routes
      */
     this.router.get('/users', this.userController.index);
-    this.router.get('/users/:id', this.userController.show);
     this.router.put('/users/:id', this.userController.update);
+    this.router.get('/users/:id', this.userController.show);
     this.router.delete('/users/:id', this.userController.destroy);
     this.router.post('/auth/signin/', this.userController.signInLocal);
     this.router.post('/auth/signup/', this.userController.signupLocal);

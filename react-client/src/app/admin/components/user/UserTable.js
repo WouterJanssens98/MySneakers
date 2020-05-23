@@ -21,6 +21,7 @@ const UserTable = ({children, posts, onDelete, onEdit}) => {
       <thead>
         <tr>
           <th></th>
+          <th>Unique User ID</th>
           <th>Email</th>
           <th>Role</th>
           <th>Created</th>
@@ -32,10 +33,8 @@ const UserTable = ({children, posts, onDelete, onEdit}) => {
           <tr
             key={post._id}
           >
-            <td>
-              
-            </td>
-            <td>{post.email}</td>
+            <td></td>
+            <td>{post.id}</td>
             <td>{post.email}</td>
             <td>{post.role}</td>
             <td>

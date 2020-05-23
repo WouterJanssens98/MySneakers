@@ -2,36 +2,36 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { useApi } from '../../../services/';
+import { useHistory } from 'react-router-dom';
+import * as Routes from '../../../routes';
+
 
 const UserEdit = ({className, children, viewModel, onSave = null, onUpdate = null}) => {
+  let history = useHistory();
   const { updateUser } = useApi();
   const [postForm, setPostForm] = useState({
     email: '',
-    role: ''
+    role: '',
+    id : ' '
   });
 
-  useEffect(() => {
-    if (viewModel && viewModel.post) {
-      setPostForm({
-        email: viewModel.post.email,
-        role: viewModel.post.role,
-      });
-    }
-  }, [viewModel])
+  
 
-  const handleSubmit = (ev) => {
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
-
-
-    if (viewModel.post) {
-      updateUser()
+    if (postForm) {
+      console.log("updating...")
+      const update = await updateUser(postForm.id, postForm.email, postForm.role);
+      console.log(update);
+      history.push(Routes.BACKOFFICE_USERS)
   }
 }
 
   const handleInputChange = (ev) => {
     setPostForm({
       ...postForm,
-      [ev.target.name]: ev.target.value
+      [ev.target.name]: ev.target.value,
+      id : viewModel['id']
     });
   }
 
@@ -39,7 +39,8 @@ const UserEdit = ({className, children, viewModel, onSave = null, onUpdate = nul
     console.log(postForm)
     setPostForm({
       ...postForm,
-      [ev.target.name]: ev.target.options[ev.target.selectedIndex].value
+      [ev.target.name]: ev.target.options[ev.target.selectedIndex].value,
+      id : viewModel['id']
       
     });
   }
