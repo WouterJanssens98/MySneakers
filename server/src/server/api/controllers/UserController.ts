@@ -50,6 +50,31 @@ class UserController {
     }
   };
 
+  public update = async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+
+    try {
+      const userUpdate = {
+        email: req.body.email,
+        role: req.body.role,
+      };
+
+      // TO DO eventueel berekeningen in backend doen
+      const user = await User.findOneAndUpdate({ _id: id }, userUpdate, {
+        new: true,
+      }).exec();
+
+      if (!user) {
+        throw new NotFoundError();
+      }
+      return res.status(200).json(user);
+    } catch (err) {
+      next(err);
+    }
+  };
+
+
+
   destroy = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
 

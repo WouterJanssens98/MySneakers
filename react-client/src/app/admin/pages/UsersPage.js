@@ -7,8 +7,8 @@ import { UserList } from '../../admin/components';
 const PostsPage = ({ children }) => {
   let history = useHistory();
 
-  const handleEdit = (postId) => {
-    history.push(Routes.BACKOFFICE_USERS_EDIT.replace(':id', postId));
+  const handleEdit = (userId) => {
+    history.push(Routes.BACKOFFICE_USERS_EDIT.replace(':id', userId));
   };
 
   return (

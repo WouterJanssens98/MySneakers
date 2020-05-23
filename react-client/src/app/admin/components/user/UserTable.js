@@ -2,17 +2,17 @@ import { default as React } from 'react';
 import { default as classnames } from 'classnames';
 import { default as moment } from 'moment';
 
-const PostsTable = ({children, posts, onDelete, onEdit}) => {
+const UserTable = ({children, posts, onDelete, onEdit}) => {
 
-  const handleDelete = (event, postId, deleteMode = 0) => {
+  const handleDelete = (event, userId, deleteMode = 0) => {
     if (typeof onDelete === 'function') {
-      onDelete(postId, deleteMode);
+      onDelete(userId, deleteMode);
     }
   };
 
-  const handleEdit = (postId) => {
+  const handleEdit = (userId) => {
     if (typeof onEdit === 'function') {
-      onEdit(postId);
+      onEdit(userId);
     }
   };
 
@@ -36,6 +36,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
               
             </td>
             <td>{post.email}</td>
+            <td>{post.email}</td>
             <td>{post.role}</td>
             <td>
               {moment(posts._createdAt).format('DD/MM/YYYY')}
@@ -51,4 +52,4 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
   );
 };
 
-export default PostsTable;
+export default UserTable;

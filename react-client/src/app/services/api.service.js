@@ -42,6 +42,27 @@ const ApiProvider = ({children}) => {
     return response.json();
   }
 
+  const updateUser = async (id, email, role) => {
+    let url = `${BASE_URL}/user/${id}`;
+
+    const options = {
+      method: "PUT",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "email" : email,
+        "role" : role
+      })
+    };
+    const response = await fetch(url, options);
+    console.log("Successfully updated user info!")
+    return response.json();
+  }
+
+
+
 
   const findAllPosts = async (query = null) => {
     let url = `${BASE_URL}/shoes`;
@@ -138,6 +159,23 @@ const ApiProvider = ({children}) => {
     return response.json();
   }
 
+
+  const editUserViewModel = async (userId) => {
+    const options = {
+      method: "get",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    };
+
+    let url = `${BASE_URL}/users/${userId}`;
+    const response = await fetch(url, options);
+    return response.json();
+  }
+
+
+
   const updatePost = async (post) => {
     const options = {
       method: "put",
@@ -171,7 +209,7 @@ const ApiProvider = ({children}) => {
   }
 
   return (
-    <ApiContext.Provider value={{ createPostViewModel, deletePost, updatePortfolio, findAllPosts, findMatchingPosts, findAllUsers, findPortfolio,getValueFromID, getShoeFromID, findPost, storePost, editPostViewModel, updatePost }}>
+    <ApiContext.Provider value={{ createPostViewModel, editUserViewModel,updateUser, deletePost, updatePortfolio, findAllPosts, findMatchingPosts, findAllUsers, findPortfolio,getValueFromID, getShoeFromID, findPost, storePost, editPostViewModel, updatePost }}>
       {children}
     </ApiContext.Provider>
   );

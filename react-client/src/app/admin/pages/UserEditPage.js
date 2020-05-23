@@ -2,26 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import * as Routes from '../../routes';
-import { PostEdit } from '../components';
+import { UserEdit } from '../components';
 import { useApi } from '../../services';
 import { useToast } from '../services';
 
 const UserEditPage = ({ children }) => {
   const { addToast } = useToast();
   const { id } = useParams();
-  const { editPostViewModel, updatePost } = useApi();
-  const [ postViewModel, setPostViewModel ] = useState(null);
+  const { editUserViewModel, updatePost } = useApi();
+  const [ userViewModel, setUserViewModel ] = useState(null);
+  console.log(id)
+  
 
   let history = useHistory();
 
   useEffect(() => {
     const fetchPostViewModel = async () => {        
-      const data = await editPostViewModel(id);
-      setPostViewModel(data);
+      const data = await editUserViewModel(id);
+      console.log(data)
+      setUserViewModel(data);
+
     }
 
     fetchPostViewModel();    
-  }, [editPostViewModel, id]);
+  }, [editUserViewModel, id]);
 
   const handleOnUpdate = async (post) => {
     const updatedPost = await updatePost(post);
@@ -35,7 +39,7 @@ const UserEditPage = ({ children }) => {
   return (
     <div className="container">
       <div className="row">
-        <PostEdit className="col-12 col-sm-12 col-md-12 col-lg-12 ol-xl-6 post-edit" viewModel={postViewModel} onUpdate={handleOnUpdate} />
+        <UserEdit className="col-12 col-sm-12 col-md-12 col-lg-12 ol-xl-6 post-edit" viewModel={userViewModel} onUpdate={handleOnUpdate} />
       </div>
     </div>
   )

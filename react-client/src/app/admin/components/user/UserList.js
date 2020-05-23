@@ -6,7 +6,7 @@ import $ from 'jquery';
 import { useApi } from '../../../services/';
 import { useToast } from '../../services';
 
-import PostsTable from './PostsTable';
+import UserTable from './UserTable';
 
 import './PostList.scss';
 
@@ -86,7 +86,7 @@ const UserList = ({children, className, limit = 10, skip = 1, onEdit}) => {
         </div>
         <div className="card-body">
           <div className="table-responsive">
-            <PostsTable posts={posts} onDelete={handleDelete} onEdit={handleEdit}  />
+            <UserTable posts={posts} onDelete={handleDelete} onEdit={handleEdit}  />
           </div>          
         </div>
         <div className="card-footer">
