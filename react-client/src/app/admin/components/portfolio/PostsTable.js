@@ -8,25 +8,15 @@ import * as Routes from '../../../routes';
 import { useHistory, Link } from 'react-router-dom';
 
 
-
-
 const PostsTable = ({children, posts, onDelete, onEdit}) => {
-
-  const { updatePortfolio } = useApi();
+  const { updatePortfolio, findPortfolio } = useApi();
   const [worth, setWorth] = useState(null);
   const [items, setItems] = useState(null);
-  const [highest, setHighest] = useState(null)
-  /*
-  useEffect( () => {
-    if(worth !== null){
-      console.log("Worth is not null!")
-      
-    }else {
-      console.log("Worth is null!")
-    }
-  }, [worth, items])
-  */
+  const [highest, setHighest] = useState(0)
+  // const [correctPosts, setPosts] = useState(posts)
 
+    
+ 
   const handleDelete = (event, postId, deleteMode = 0) => {
     if (typeof onDelete === 'function') {
       onDelete(postId, deleteMode);
@@ -39,13 +29,13 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
     }
   };
 
-  const handleRemove = async (id) => {
-    const url = `${apiConfig.baseURL}/portfolio/remove/${id}`;
-    const userID = JSON.parse(localStorage.getItem('mern:authUser'))
+  const handleRemove = async (item) => {
+    const url = `${apiConfig.baseURL}/portfolio/remove/${item}`;
+    const userID = JSON.parse(localStorage.getItem('mern:authUser')).id;
     console.log(userID)
-    /*
+    
     const details = {
-    referredUser : id
+    referredUser : userID
     };
 
     const myHeaders = {
@@ -59,11 +49,10 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
     };
 
     const response = await fetch(`${url}`, options);
-    const resData = await response.json()
-    */
-}
+    const resData = await response.json();
+    window.location.reload();
+    }
 
-  
   const setValue = async () => {
     const table = document.getElementsByClassName("table");
     const amount = document.querySelectorAll('.test').length
@@ -80,9 +69,14 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
       totalItems : amount,
       totalWorth : sumVal
     };
-    setHighest(Math.max(...highestPrice))
+        
     setWorth(sumVal)
     setItems(amount)
+    if(amount === 0){
+      setHighest("0")
+    }else{
+      setHighest(Math.max(...highestPrice))
+    };
 
     var x = document.getElementById("statistics");
     if (x.style.display === "none") {
@@ -113,7 +107,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
         </div>
         <div class="ui orange statistic">
           <div class="value">
-          € {highest ? highest : 0}
+          € {highest}
           </div>
           <div class="label">Highest valued item</div>
         </div>
@@ -142,8 +136,8 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
         <tr>
           <th>Shoe</th>
           <th>Size</th>
-          <th>Price (euro)</th>
-          <th>Actions</th>
+          <th>Price (€)</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -161,7 +155,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
             <td class="test" value={post['stockxValue']}>
             {post['stockxValue']}
             </td>
-            <td className="d-flex justify-content-around">
+            <td>
               <a href="#" aria-label="delete-forever" onClick={ev => handleRemove(post.id)}><i className="fas fa-trash"></i></a>              
             </td>
           </tr>

@@ -6,7 +6,7 @@ import { PostEdit } from '../components';
 import { useApi } from '../../services';
 import { useToast } from '../services';
 
-const PostEditPage = ({ children }) => {
+const UserEditPage = ({ children }) => {
   const { addToast } = useToast();
   const { id } = useParams();
   const { editPostViewModel, updatePost } = useApi();
@@ -40,4 +40,4 @@ const PostEditPage = ({ children }) => {
     </div>
   )
 };
-export default PostEditPage;
+export default UserEditPage;

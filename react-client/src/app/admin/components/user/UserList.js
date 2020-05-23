@@ -10,7 +10,7 @@ import PostsTable from './PostsTable';
 
 import './PostList.scss';
 
-const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {  
+const UserList = ({children, className, limit = 10, skip = 1, onEdit}) => {  
   const { deletePost, findAllUsers } = useApi();
   const { addToast } = useToast();
   const [ posts, setPosts ] = useState();
@@ -72,9 +72,9 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
     setPostToDelete(null);
   }
 
-  const handleEdit = (postId) => {
+  const handleEdit = (userId) => {
     if (typeof onEdit === 'function') {
-      onEdit(postId);
+      onEdit(userId);
     }
   }
 
@@ -82,7 +82,7 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
     <div className={className}>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">Shoes</h6>
+          <h6 className="m-0 font-weight-bold text-primary">Users</h6>
         </div>
         <div className="card-body">
           <div className="table-responsive">
@@ -132,4 +132,4 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
   );
 };
 
-export default PostList;
+export default UserList;

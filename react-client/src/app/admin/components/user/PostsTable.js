@@ -10,7 +10,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
     }
   };
 
-  const handleEdit = (event, postId) => {
+  const handleEdit = (postId) => {
     if (typeof onEdit === 'function') {
       onEdit(postId);
     }
@@ -41,8 +41,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
               {moment(posts._createdAt).format('DD/MM/YYYY')}
             </td>
             <td className="d-flex justify-content-around">
-              <a href="#" aria-label="edit" onClick={ev => handleEdit(ev, post.id)}><i className="fas fa-edit"></i></a>
-              <a href="#" className={classnames(post._deletedAt === null ? 'soft-deleted' : 'soft-undeleted')} aria-label="delete" onClick={ev => handleDelete(ev, post.id, post._deletedAt === null ? 'softdelete' : 'softundelete', 'delete')}><i className="fas fa-trash-alt"></i></a>
+              <a href="#" aria-label="edit" onClick={ev => handleEdit(post.id)}><i className="fas fa-edit"></i></a>
               <a href="#" aria-label="delete-forever" onClick={ev => handleDelete(ev, post.id, 'delete')}><i className="fas fa-trash"></i></a>              
             </td>
           </tr>

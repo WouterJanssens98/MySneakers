@@ -8,7 +8,7 @@ const PostsPage = ({ children }) => {
   let history = useHistory();
 
   const handleEdit = (postId) => {
-    history.push(Routes.BACKOFFICE_POSTS_EDIT.replace(':id', postId));
+    history.push(Routes.BACKOFFICE_USERS_EDIT.replace(':id', postId));
   };
 
   return (
