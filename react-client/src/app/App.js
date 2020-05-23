@@ -19,9 +19,7 @@ function App() {
             <Switch>
               <RouteWithLayout exact path={Routes.LANDING} component={HomePage} layout={PageLayout} />
               <Redirect from={Routes.HOME} to={Routes.SEARCH} />
-              <RouteWithLayout exact path={Routes.CONTACT} component={ContactPage} layout={PageLayout} />
               <RouteWithLayout exact path={Routes.SEARCH} component={SearchPage} layout={PageLayout} />
-              <RouteWithLayout exact path={Routes.POSTS} component={PostsPage} layout={PageLayout} />
               <RouteWithLayout exact path={Routes.POST_DETAIL} component={PostDetailPage} layout={PageLayout} />
               <RouteWithLayout exact path={Routes.AUTH_SIGN_IN} component={SignInPage} layout={AuthLayout} />
               <RouteWithLayout exact path={Routes.AUTH_SIGNUP} component={SignUpPage} layout={AuthLayout} />

@@ -39,6 +39,30 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
     }
   };
 
+  const handleRemove = async (id) => {
+    const url = `${apiConfig.baseURL}/portfolio/remove/${id}`;
+    const userID = JSON.parse(localStorage.getItem('mern:authUser'))
+    console.log(userID)
+    /*
+    const details = {
+    referredUser : id
+    };
+
+    const myHeaders = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+    }
+    const options = {
+      method: 'POST',
+      headers: myHeaders,
+      body : JSON.stringify(details)
+    };
+
+    const response = await fetch(`${url}`, options);
+    const resData = await response.json()
+    */
+}
+
   
   const setValue = async () => {
     const table = document.getElementsByClassName("table");
@@ -46,7 +70,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
     let sumVal = 0;
     const test = table[0]
     const highestPrice = []
-    for(var i = 1; i < amount; i++)
+    for(var i = 1; i < amount+1; i++)
             {
                 sumVal = sumVal + parseInt(test.rows[i].cells[2].innerHTML);
                 highestPrice.push(parseInt(test.rows[i].cells[2].innerHTML))
@@ -138,9 +162,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
             {post['stockxValue']}
             </td>
             <td className="d-flex justify-content-around">
-              <a href="#" aria-label="edit" onClick={ev => handleEdit(ev, post.id)}><i className="fas fa-edit"></i></a>
-              <a href="#" className={classnames(post._deletedAt === null ? 'soft-deleted' : 'soft-undeleted')} aria-label="delete" onClick={ev => handleDelete(ev, post.id, post._deletedAt === null ? 'softdelete' : 'softundelete', 'delete')}><i className="fas fa-trash-alt"></i></a>
-              <a href="#" aria-label="delete-forever" onClick={ev => handleDelete(ev, post.id, 'delete')}><i className="fas fa-trash"></i></a>              
+              <a href="#" aria-label="delete-forever" onClick={ev => handleRemove(post.id)}><i className="fas fa-trash"></i></a>              
             </td>
           </tr>
         ))}

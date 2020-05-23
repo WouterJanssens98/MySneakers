@@ -111,6 +111,7 @@ class ApiRouter {
     this.router.get('/portfolio/:id', this.portfolioController.show)
     this.router.post('/portfolio/:id', this.portfolioController.store)
     this.router.post('/portfolio/add/:id', this.portfolioController.add)
+    this.router.post('/portfolio/remove/:id', this.portfolioController.remove)
     this.router.put('/portfolio/:id' , this.portfolioController.update)
     
 

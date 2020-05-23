@@ -3,14 +3,14 @@ import { Link, NavLink, useHistory } from 'react-router-dom';
 
 import * as Routes from '../../routes';
 
+
 import Logo from '../../_static/images/logo192.png';
 import { useAuth } from '../../services';
 
 const Navigation = ({children}) => {
   const { currentUser, logout} = useAuth();
   let history = useHistory();
-
-  
+    
   const handleLogout = async () => {
     const success = await logout();
     history.push(Routes.AUTH_SIGN_IN);
@@ -33,7 +33,7 @@ const Navigation = ({children}) => {
            ? (
             <div class="dropdown dropleft">
               <button class="btn btn-link dropdown-toggle auth-toggle" type="button" id="accountMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src={currentUser.avatar} alt="" />
+                <img src='https://w7.pngwing.com/pngs/557/749/png-transparent-computer-icons-avatar-user-profile-blog-personal-heroes-recruiter-conversation.png' alt="" />
               </button>
               <div class="dropdown-menu" aria-labelledby="accountMenu">
                 <NavLink className="dropdown-item" activeClassName="active" to={Routes.BACKOFFICE_LANDING}>Dashboard</NavLink>

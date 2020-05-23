@@ -105,6 +105,19 @@ class PortfolioController {
         return res.status(201).json(portfolio);
     };
 
+    
+    
+    remove = async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+      const user = req.body.referredUser;
+      const portfolio = await Portfolio.update( 
+        { "referredUser" : user }, 
+        {$pull : {
+          referredValues : id
+        }} );
+        return res.status(201).json(portfolio);
+    };
+
 
 
 }
