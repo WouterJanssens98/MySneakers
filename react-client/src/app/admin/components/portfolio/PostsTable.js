@@ -6,7 +6,7 @@ import { useApi } from '../../../services/';
 import { apiConfig } from '../../../config';
 import * as Routes from '../../../routes';
 import { useHistory, Link } from 'react-router-dom';
-
+import './PostsTable.scss';
 
 const PostsTable = ({children, posts, onDelete, onEdit}) => {
   const { updatePortfolio, findPortfolio } = useApi();
@@ -15,7 +15,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
   const [highest, setHighest] = useState(0)
   // const [correctPosts, setPosts] = useState(posts)
 
-    
+  console.log({posts});
  
   const handleDelete = (event, postId, deleteMode = 0) => {
     if (typeof onDelete === 'function') {
@@ -136,7 +136,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
         <tr>
           <th>Shoe</th>
           <th>Size</th>
-          <th>Price (€)</th>
+          <th>Price €</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -144,10 +144,13 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
         
         {posts && posts['values'].map(post => (
           
-          <tr
+          <tr 
             key={post._id}
-          >
+          > 
+            
+
             <td>
+            <img id="portfolioImage"src={post['shoe']['0']['imageUrl']}></img>
             {post['shoe']['0']['shoeName']}
             </td>
             

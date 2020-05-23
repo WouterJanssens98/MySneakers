@@ -11,7 +11,7 @@ const PageSection = ({children, classes, title, subTitle, image, readMoreRoute})
         <div className="container">
           <div className="row">
             <div className="col-12 text-center title">
-              <img src={image}></img>
+              <img height= "40px" src={image}></img>
               <h1 className="d-flex justify-content-center"><span>{title}</span></h1>
               {!!subTitle ? (<h2 className="text-black-50">{subTitle}</h2>) : ''}
             </div>
