@@ -1,4 +1,4 @@
-# mern-boilerplate
+# MySneakers - mern-boilerplate
 Boilerplate MERN stack | New Media Development | Artevelde University of Applied Sciences
 
 # Rules
