@@ -68,7 +68,7 @@ const UserEdit = ({className, children, viewModel, onSave = null, onUpdate = nul
               </select>
               </div>
             </div>
-            <button type="submit" className="btn btn-primary">{!!viewModel && !!viewModel.post ? 'Update' : 'Save'} post</button>
+            <button type="submit" className="btn btn-primary">{!!viewModel && !!viewModel.post ? 'Update' : 'Save'} User</button>
           </form>          
         </div>
       </div>
