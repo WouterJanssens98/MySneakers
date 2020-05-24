@@ -42,7 +42,7 @@ const SearchListPaged = ({children, limit, skip , onReadMore, className, ...rest
         <div id="searchString">
             <div  class="ui large icon input">
                 <input size="10" type="text" onChange={(ev) => setQuery(ev.target.value)} placeholder="Yeezy" />
-                <button id="searchbtn" className="ui button blue" onClick={ev => handleSearch()}>Go</button>
+                <button id="searchbtn" className="ui button" onClick={ev => handleSearch()}>Go</button>
 
             </div>
         </div>
@@ -56,7 +56,7 @@ const SearchListPaged = ({children, limit, skip , onReadMore, className, ...rest
             <div className="card-body">
               <h5 className="card-title">{post.shoeName}</h5>
               <p className="card-text">{post.synopsis}</p>
-              <button className="ui primary button" onClick={ev => handleReadMore(ev, post._id)}>View shoe</button>
+              <button id="addBtn" className="ui primary button" onClick={ev => handleReadMore(ev, post._id)}>View shoe</button>
             </div>
           </article>
         </div>

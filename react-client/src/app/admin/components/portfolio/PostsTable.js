@@ -125,7 +125,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
         </a>
   
        
-        <Link className="btn btn-primary" to={Routes.SEARCH}>Add Sneakers</Link>
+        <Link id="addBtn" className="btn btn-primary" to={Routes.SEARCH}>Add Sneakers</Link>
         
 
     </div>
@@ -150,8 +150,8 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
             
 
             <td>
-            <img id="portfolioImage"src={post['shoe']['0']['imageUrl']}></img>
-            {post['shoe']['0']['shoeName']}
+            <a id="decoration" href={Routes.POST_DETAIL.replace(':id', post['shoe']['0']['id'])}><img width="20%" src={post['shoe']['0']['imageUrl']}></img></a>
+            <p  id="decoration" >{post['shoe']['0']['shoeName']}</p>
             </td>
             
             <td> {post['shoeSize']}</td>
@@ -159,7 +159,7 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
             {post['stockxValue']}
             </td>
             <td>
-              <a href="#" aria-label="delete-forever" onClick={ev => handleRemove(post.id)}><i className="fas fa-trash"></i></a>              
+              <a href="#" id="actionOverlay" aria-label="delete-forever" onClick={ev => handleRemove(post.id)}><i className="fas fa-trash"></i></a>              
             </td>
           </tr>
         ))}

@@ -1,6 +1,7 @@
 import { default as React } from 'react';
 import { default as classnames } from 'classnames';
 import { default as moment } from 'moment';
+import './PostList.scss';
 
 const UserTable = ({children, posts, onDelete, onEdit}) => {
 
@@ -41,8 +42,8 @@ const UserTable = ({children, posts, onDelete, onEdit}) => {
               {moment(posts._createdAt).format('DD/MM/YYYY')}
             </td>
             <td className="d-flex justify-content-around">
-              <a href="#" aria-label="edit" onClick={ev => handleEdit(post.id)}><i className="fas fa-edit"></i></a>
-              <a href="#" aria-label="delete-forever" onClick={ev => handleDelete(ev, post.id, 'delete')}><i className="fas fa-trash"></i></a>              
+              <a href="#" aria-label="edit" id="actionOverlay" onClick={ev => handleEdit(post.id)}><i className="fas fa-edit"></i></a>
+              <a href="#" aria-label="delete-forever" id="actionOverlay" onClick={ev => handleDelete(ev, post.id, 'delete')}><i className="fas fa-trash"></i></a>              
             </td>
           </tr>
         ))}

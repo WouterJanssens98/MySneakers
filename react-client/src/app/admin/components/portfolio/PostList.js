@@ -82,7 +82,7 @@ const PostList = ({children, className, limit = 10, skip = 1, onEdit}) => {
     <div className={className}>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">Portfolio</h6>
+          <h6 id="titleOverlay" className="m-0 font-weight-bold ">Portfolio</h6>
         </div>
         <div className="card-body">
           <div className="table-responsive">

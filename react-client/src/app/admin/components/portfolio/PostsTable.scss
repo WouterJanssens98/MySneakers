@@ -4,3 +4,20 @@
     padding-right : 40px
 }
 
+#addBtn {
+    margin-left : 5px;
+    background-color : rgb(106, 199, 189);
+    color : white ;
+    font-weight: 1000;
+    border : 2px solid  rgb(106, 199, 189);
+}
+
+#actionOverlay {
+    color : rgb(106, 199, 189);
+}
+
+#decoration {
+    text-decoration: none;
+}
+
+a { color: inherit; } 

@@ -1,6 +1,7 @@
 import { default as React } from 'react';
 import { default as classnames } from 'classnames';
 import { default as moment } from 'moment';
+import * as Routes from '../../../routes';
 
 const PostsTable = ({children, posts, onDelete, onEdit}) => {
 
@@ -21,30 +22,31 @@ const PostsTable = ({children, posts, onDelete, onEdit}) => {
       <thead>
         <tr>
           <th></th>
-          <th>Shoe Name</th>
-          <th>Brand</th>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Product SKU</th>
           <th>Created</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {posts && posts.map(post => (
           <tr
             key={post._id}
-          >
+          > 
+          <td>
+
+          </td>
             <td>
-              
+              <a href={Routes.POST_DETAIL.replace(':id', post._id)}><img width="40%" src={post.imageUrl}></img></a>
             </td>
-            <td>{post.shoeName}</td>
-            <td>{post.shoeBrand}</td>
+            <td>
+             {post.shoeName}
+            </td>
+            <td>{post.productSku}</td>
             <td>
               {moment(posts._createdAt).format('DD/MM/YYYY')}
             </td>
-            <td className="d-flex justify-content-around">
-              <a href="#" aria-label="edit" onClick={ev => handleEdit(ev, post.id)}><i className="fas fa-edit"></i></a>
-              <a href="#" className={classnames(post._deletedAt === null ? 'soft-deleted' : 'soft-undeleted')} aria-label="delete" onClick={ev => handleDelete(ev, post.id, post._deletedAt === null ? 'softdelete' : 'softundelete', 'delete')}><i className="fas fa-trash-alt"></i></a>
-              <a href="#" aria-label="delete-forever" onClick={ev => handleDelete(ev, post.id, 'delete')}><i className="fas fa-trash"></i></a>              
-            </td>
+           
           </tr>
         ))}
       </tbody>
