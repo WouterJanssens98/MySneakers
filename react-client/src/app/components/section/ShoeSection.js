@@ -74,7 +74,6 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
       
              const data3 = await response3.json();
              const lowestAskPrice = data3['Market']['lowestAsk']
-             console.log(data3)
              setValue(lowestAskPrice)
 
           }else {
@@ -105,7 +104,6 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
              const data3 = await response3.json();
              setSpecific(data3)
              const lowestAskPrice = data3['Market']['lowestAsk']
-             console.log(data3)
              setValue(lowestAskPrice)
 
           }else {
@@ -129,12 +127,20 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
         console.log(`Your shoe size changed to ${size}, updating value.....`);
         getStockXPrice(size, sku);
         document.getElementById('success').innerHTML = "";
-        console.log(specificData)
     },[size]);
 
     const userData = localStorage.getItem("mern:authUser");
     const signedInUser = JSON.parse(userData) ?  JSON.parse(userData)['id'] : null ;
-   
+    
+    /*
+    const input = document.getElementById("buttonTheme");
+    
+    if(signedInUser){
+      input.disabled = false
+    } else {
+      input.disabled = true
+    };
+    */
 
     const handleSubmit = async (ev) => {
       ev.preventDefault();
@@ -168,10 +174,13 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
     };
     const response2 = await fetch(`${url2}`, options2);
 
-    const data2 = await response2.json()
-    if(data2.ok){
-      console.log("Successfully added to portfolio")
+    const data2 = await response2.json();
+    if(data2.n == 1){
+      console.log("Successfully added to portfolio!")
+    } else{
+      console.log("Error adding to portfolio!")
     }
+
     document.getElementById('success').innerHTML = "Successfully added to portfolio"
     
    
@@ -192,7 +201,6 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
       </header>  
 
 <div class="ui cards centered">
-  
   <div className="ui card">
       <div className="image"><img id="stockx" src="https://cdn.clipart.email/f78e4030f192e759db32beeddb03acb6_stockx-animation-process_1140-440.jpeg" /></div>
         <div className="content">
@@ -233,7 +241,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
                 <div id="dropdown" >
                           <label>Choose Size</label>
                           <br></br>
-                          <select class="ui selection small dropdown" onChange={e => setSize(e.currentTarget.value)} defaultValue = "10" id = "myList">
+                          <select defaultValue="10" className="ui selection small dropdown" onChange={e => setSize(e.currentTarget.value)} defaultValue = "10" id = "myList">
                           <option value=""  disabled hidden></option>
                           <option value = "4">US4</option>
                           <option value = "4.5">US4.5</option>
@@ -247,7 +255,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
                           <option value = "8.5">US8.5</option>
                           <option value = "9">US9</option>
                           <option value = "9.5">US9.5</option>
-                          <option selected defaultValue="10" value = "10">US10</option>
+                          <option value = "10">US10</option>
                           <option value = "10.5">US10.5</option>
                           <option value = "11">US11</option>
                           <option value = "11.5">US11.5</option>
@@ -263,7 +271,7 @@ const PageSection = ({children, classes, id, sku, imageUrl ,title, subTitle, rea
                       
                           <label>Current Market Value </label>
                           <p  id="price" >{value ? "€"+ value : "No current market price"}</p>
-                          <button  id="buttonTheme" class="ui button buttonTheme" type="submit"> Add To My Portfolio</button>
+                          <button  disabled={!signedInUser} id="buttonTheme" class="ui button buttonTheme" type="submit"> Add To My Portfolio</button>
                           <p id= "success"></p>
               </form>
               </div>
