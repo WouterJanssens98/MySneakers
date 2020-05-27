@@ -1,13 +1,20 @@
-# mern-boilerplate
+# MySneakers - mern-boilerplate
 Boilerplate MERN stack | New Media Development | Artevelde University of Applied Sciences
 
 # Rules
 
 https://medium.com/@jorgemcdev/node-express-app-typescript-tslint-prettier-airbnb-husky-c42588cbcbe3
 
-# Project creation
+# Briefing
+The briefing of this project was to make a MERN stack application.
+We could chose the subject from our own hobbies or things we'd like to add.
+My idea was to make a sneaker portfolio app with realtime prices as I have my own business in selling sneakers.
 
-![Image of React Coding](https://images.unsplash.com/photo-1552308995-2baac1ad5490?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)
+# Resultaat
+The application is created for sneaker collectors ("resellers") that want to have a good overview of their stock worth.
+Users can search for sneakers and view realtime market prices/ info about the specific shoe they searched for.
+After having reviewed their inventory, they can add the desired size to their portfolio.
+When going to their portfolio and reviewing it's statistics, the portfolio will update with the user with it's current worth of their inventory. If they decide to sell their pair of limited sneakers, they can always delete it from their portfolio with a simple click.
 
 # NMD MERN Template
 
@@ -57,7 +64,7 @@ REACT_APP_API_URL=/api
 Under the root of the project execute:
 
 ```
-yarn install
+yarn install:all
 ```
 
 ### Scripts
@@ -102,30 +109,7 @@ yarn serve:build
 
 ## API Specification
 
-### Urls
-
-- [Swagger Ui for Express](http://{your domain}:{your port]/api/v1/docs/)
-- [ReDoc](http://{your domain}:{your port]/docs/)
-
 ## Client
-
-### Urls
-
-- Public
-  - Home: http://{your domain}:{your port]
-  - News: http://{your domain}:{your port]/posts
-  - Post Detail: http://{your domain}:{your port]/posts/{post id}
-- Admin
-  - Home: http://{your domain}:{your port]/admin
-  - Blog List: http://{your domain}:{your port]/admin/blogs
-  - Blog Create: http://{your domain}:{your port]/admin/blogs/create
-  - Blog Edit: http://{your domain}:{your port]/admin/blogs/{blog id}/edit
-  - Categories List: http://{your domain}:{your port]/admin/categories
-  - Category Create: http://{your domain}:{your port]/admin/categories/create
-  - Category Edit: http://{your domain}:{your port]/admin/categories/{category id}/edit
-  - Posts List: http://{your domain}:{your port]/admin/posts
-  - Post Create: http://{your domain}:{your port]/admin/posts/create
-  - Post Edit: http://{your domain}:{your port]/admin/posts/{post id}/edit
 
 ## Built With
 
@@ -135,7 +119,7 @@ yarn serve:build
 
 ## Authors
 
-Philippe De Pauw - Waterschoot | [drdynscript](https://github.com/drdynscript)
+[Wouter Janssens](https://github.com/WouterJanssens98)
 
 ## License
 
